@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
+import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,18 +7,23 @@ import * as firebase from 'firebase/app';
   styles: [
   ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor(public afAuth: AngularFireAuth) { }
-
-  ngOnInit(): void {
-  }
+  constructor(public _authService: AuthService) { }
 
   login(){
     
   }
 
   doGoogleLogin(){
+    console.log("login component google login");
+    this._authService.login("google");
+
+    // console.log(this._authService.usuario);
+    
+    // this._authService.doGoogleLogin();
+
+    
     // return new Promise<any>((resolve, reject) => {
     //   let provider = new firebase.auth.GoogleAuthProvider();
     //   provider.addScope('profile');
@@ -30,7 +34,11 @@ export class LoginComponent implements OnInit {
     //     resolve(res);
     //   })
     // })
+
   }
-  
+
+  logout(){
+    this._authService.logout();
+  }
 
 }

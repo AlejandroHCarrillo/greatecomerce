@@ -1,50 +1,35 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { Usuario } from '../models/usuario.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  user$: Observable<firebase.User>;
 
-  constructor(){}
-
-  doRegister(value){
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-      .then(res => {
-        resolve(res);
-      }, err => reject(err))
-    })
+  constructor(public afAuth: AngularFireAuth){
+    this.user$ = this.afAuth.authState;
   }
 
-  doGoogleLogin(){
-    console.log("Autenticar con google");
-    
-    // return new Promise<any>((resolve, reject) => {
-    //   let provider = new firebase.auth.GoogleAuthProvider();
-    //   provider.addScope('profile');
-    //   provider.addScope('email');
-    //   this.afAuth.auth
-    //   .signInWithPopup(provider)
-    //   .then(res => {
-    //     resolve(res);
-    //   })
-    // })
+  login(proveedor:string) {
+    switch (proveedor) {
+      case 'google':
+        this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());        
+        break;
+      case 'twitter':
+          this.afAuth.signInWithPopup(new firebase.auth.TwitterAuthProvider());        
+          break;      
+      default:
+        console.log('Autenticador desconocido');
+        break;
+    }
   }
 
-  doFacebookLogin(){
-    // return new Promise<any>((resolve, reject) => {
-    //   let provider = new firebase.auth.FacebookAuthProvider();
-    //   this.afAuth.auth
-    //   .signInWithPopup(provider)
-    //   .then(res => {
-    //     resolve(res);
-    //   }, err => {
-    //     console.log(err);
-    //     reject(err);
-    //   })
-    // })
+  logout() {
+    this.afAuth.signOut();
   }
 
 }

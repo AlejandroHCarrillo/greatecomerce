@@ -1,14 +1,16 @@
-import { Component, OnInit, ErrorHandler } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'bs-navbar',
   templateUrl: './navbar.component.html'
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent  {
 
-  constructor() { }
+  constructor(public _authService: AuthService) { }
 
-  ngOnInit(): void {
+  logout(){
+    this._authService.logout();
   }
 
 }
