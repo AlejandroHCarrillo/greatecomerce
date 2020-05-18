@@ -3,6 +3,14 @@
 ## Install firebase
 npm install @angular/fire firebase --save
 
+## install bootstrap
+npm install bootstrap
+
+## install ng-bootstrap
+ng add @ng-bootstrap/ng-bootstrap
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
 ## Development server
