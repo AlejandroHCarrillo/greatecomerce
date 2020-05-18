@@ -9,6 +9,7 @@ npm install bootstrap
 ## install ng-bootstrap
 ng add @ng-bootstrap/ng-bootstrap
 
+https://ng-bootstrap.github.io/#/getting-started
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
