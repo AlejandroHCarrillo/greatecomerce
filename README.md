@@ -1,5 +1,8 @@
 # GreatEcomerce
 
+## Install firebase
+npm install @angular/fire firebase --save
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
 ## Development server
