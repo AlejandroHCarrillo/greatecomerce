@@ -23,6 +23,9 @@ import { OrderSuccessComponent } from './components/order-success/order-success.
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/guards/auth.guard';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,11 @@ import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orde
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     NgbModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard, 
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

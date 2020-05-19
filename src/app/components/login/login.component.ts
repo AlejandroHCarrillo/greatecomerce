@@ -8,33 +8,31 @@ import { AuthService } from 'src/app/services/auth.service';
   ]
 })
 export class LoginComponent {
+  user = {
+    email: '',
+    password: ''
+  };
 
-  constructor(public _authService: AuthService) { }
+  constructor(public _authService: AuthService) {
+    
+   }
 
   login(){
     
   }
 
+  signInWithEmail() {
+    // this._authService.signInRegular(this.user.email, this.user.password)
+    //    .then((res) => {
+    //       console.log(res);    
+    //       this.router.navigate(['dashboard']);
+    //    })
+    //    .catch((err) => console.log('error: ' + err));
+ }
+
   doGoogleLogin(){
     console.log("login component google login");
     this._authService.login("google");
-
-    // console.log(this._authService.usuario);
-    
-    // this._authService.doGoogleLogin();
-
-    
-    // return new Promise<any>((resolve, reject) => {
-    //   let provider = new firebase.auth.GoogleAuthProvider();
-    //   provider.addScope('profile');
-    //   provider.addScope('email');
-    //   this.afAuth. 
-    //   .signInWithPopup(provider)
-    //   .then(res => {
-    //     resolve(res);
-    //   })
-    // })
-
   }
 
   logout(){
