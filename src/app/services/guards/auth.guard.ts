@@ -17,18 +17,13 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    console.log('can activate???');
-    
-    let url: string = state.url;
-  
+    let url: string = state.url;  
       return this.checkLogin(url);
   }
-  
   
   checkLogin(urlRet: string):Observable<boolean> {
       return this.authService.user$.pipe(        
         map(res=>{
-          console.log("res: ", res);
           if (res)  { return true; }
           else {
             this.router.navigate(['/login'], { queryParams: { returnUrl: urlRet }});
@@ -38,5 +33,5 @@ export class AuthGuard implements CanActivate {
 
       );
     }
-    
+
 }

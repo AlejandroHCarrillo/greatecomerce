@@ -11,6 +11,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { AdminAuthGuard } from './services/guards/admin-auth.guard';
 
 
 const routes: Routes = [
@@ -20,12 +21,12 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent },
 
-  { path: 'check-out', component:CheckoutComponent, canActivate: [AuthGuard] },
-  { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
-  { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+  { path: 'check-out', component:CheckoutComponent, canActivate: [ AuthGuard ] },
+  { path: 'order-success', component: OrderSuccessComponent, canActivate: [ AuthGuard ] },
+  { path: 'my/orders', component: MyOrdersComponent, canActivate: [ AuthGuard ] },
 
-  { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard] },
-  { path: 'admin/orders', component: OrderSuccessComponent, canActivate: [AuthGuard]},
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [ AuthGuard, AdminAuthGuard ] },
+  { path: 'admin/orders', component: OrderSuccessComponent, canActivate: [ AuthGuard, AdminAuthGuard ]},
 
 ];
 
