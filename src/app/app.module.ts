@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,6 +25,10 @@ import { OrderSuccessComponent } from './components/order-success/order-success.
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/guards/auth.guard';
+import { UserService } from './services/user.service';
+import { AdminAuthGuard } from './services/guards/admin-auth.guard';
 
 @NgModule({
   declarations: [
@@ -48,9 +54,17 @@ import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orde
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+
+    AngularFireDatabaseModule,
+
     NgbModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard, 
+    AdminAuthGuard,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
