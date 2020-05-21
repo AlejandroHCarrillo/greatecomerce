@@ -1,5 +1,12 @@
 # GreatEcomerce
 
+Breve resumen de como crear un CRUD con Firebase
+https://dottedsquirrel.com/angular/how-to-crud-in-angular-firebase-firestore/
+
+Querys y ordenamientos
+
+https://github.com/angular/angularfire/blob/master/docs/rtdb/querying-lists.md
+
 ## Install firebase
 npm install @angular/fire firebase --save
 
@@ -10,6 +17,26 @@ npm install bootstrap
 ng add @ng-bootstrap/ng-bootstrap
 
 https://ng-bootstrap.github.io/#/getting-started
+
+## Uso del switchMap
+https://blog.angular-university.io/rxjs-switchmap-operator/
+
+https://blog.angular-university.io/rxjs-higher-order-mapping/
+
+https://www.concretepage.com/questions/634
+
+
+## Validaciones personalizadas
+Instalar libreria
+npm  install ng2-validation --save
+
+Uso:
+
+https://github.com/yuyang041060120/ng2-validation
+
+
+
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
