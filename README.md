@@ -7,6 +7,14 @@ Querys y ordenamientos
 
 https://github.com/angular/angularfire/blob/master/docs/rtdb/querying-lists.md
 
+Listas "Como mapear el payload"
+https://github.com/angular/angularfire/blob/master/docs/rtdb/lists.md
+
+custom validations
+https://www.concretepage.com/angular-2/angular-4-min-max-validation
+https://angular.io/guide/attribute-directives
+
+
 ## Install firebase
 npm install @angular/fire firebase --save
 

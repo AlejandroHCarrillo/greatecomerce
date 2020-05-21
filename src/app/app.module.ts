@@ -32,6 +32,8 @@ import { AdminAuthGuard } from './services/guards/admin-auth.guard';
 import { ProductFormComponent } from './components/admin/product-form/product-form.component';
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
+import { CustomMinDirective } from './directives/custom-min-validator.directive';
+import { CustomMaxDirective } from './directives/custom-max-validator.directive';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { ProductService } from './services/product.service';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    CustomMinDirective,
+    CustomMaxDirective
   ],
   imports: [
     BrowserModule,
