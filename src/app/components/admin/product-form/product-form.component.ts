@@ -18,16 +18,17 @@ import { map } from 'rxjs/operators';
 export class ProductFormComponent implements OnInit {
   categories$;
   product = new Product();
+  productId : string;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private categoryService: CategoryService,
               private productService: ProductService) {
     this.categories$ = categoryService.getCategories();    
-    let productId = this.route.snapshot.paramMap.get('id');
+    this.productId = this.route.snapshot.paramMap.get('id');
     
-    if (productId && productId!='new' ) {
-      this.productService.getById(productId).snapshotChanges()
+    if (this.productId && this.productId!='new' ) {
+      this.productService.getById(this.productId).snapshotChanges()
                           .pipe (
                               map( item => ( {                                             
                                 key: item.payload.key, ...(item.payload.val() as Product) 
@@ -43,9 +44,21 @@ export class ProductFormComponent implements OnInit {
   }
 
   save(product:any){
-    // console.log('saving form: ', product);
-    this.productService.create(product);
+    if(this.productId == "new") {
+      // console.log('saving form: ', product);
+      this.productService.create(product);
+    } else {
+      // console.log('Actualizando', product);      
+      this.productService.update(this.productId, product);      
+    }
     this.router.navigate(['admin/products']);
+  }
+
+  delete(){
+    if( confirm("¿En verdad desea eliminar este producto?") ){
+      this.productService.delete(this.productId);
+      this.router.navigate(['admin/products']);
+    }
   }
 
 }

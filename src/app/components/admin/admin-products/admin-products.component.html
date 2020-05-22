@@ -1,25 +1,31 @@
 <p>
   <a [routerLink]="['/admin/products/new']" class="btn btn-primary">Nuevo producto</a>
 </p>
-
-<table class="table">
-  <thead>
+<p>
+  <input type="text" class="form-control" placeholder="Buscar..."
+         #query (keyup)="filter(query.value)">
+</p>
+<table  class="table table-striped table-hover  table-sm">
+  <thead class="thead-dark">
     <tr>
+      <th>Img</th>
       <th>Title</th>
+      <th>Category</th>
       <th>Price</th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of products$ | async ">
+    <tr *ngFor="let item of filteredProducts ">
+      <td>
+        <img *ngIf="item.imageUrl" [src]="item.imageUrl"  style="height: 30px; width: auto;" [alt]="item.title">
+      </td>
       <td>{{ item.title }}</td>
-      <td>{{ item.price }}</td>
-      <td><a [routerLink]="['/admin/products/', item.key]" >Edit</a> </td>
+      <td>{{ item.category }}</td>
+      <td>{{ item.price | currency:"USD": true }}</td>
+      <td><a class="btn btn-warning" [routerLink]="['/admin/products/', item.key]" >Edit</a></td>
+      <td><button class="btn btn-danger" (click)="delete(item.key)" >Delete</button></td>
     </tr>
   </tbody>
 </table>
-
-
-<div *ngFor="let item of products$ | async ">
-  {{ item | json }}      
-</div>

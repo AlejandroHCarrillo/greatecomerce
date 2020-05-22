@@ -30,4 +30,14 @@ export class ProductService {
     return this.db.list('/products/').push( product );
   }
 
+  update(productId:string, product:Product){
+    console.log('Actualizando el producto', product);
+    return this.db.object('/products/'+productId).update( product );
+  }
+
+  delete(uid:string){
+    return this.db.object('/products/' + uid).remove();
+
+  }
+
 }
