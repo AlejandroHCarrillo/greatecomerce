@@ -20,6 +20,11 @@ export class ProductService {
     )
   }
 
+  getById(uid: string) {
+    return this.db.object('/products/' + uid);
+  }
+
+
   create(product:Product){
     // console.log('Guardando el producto');
     return this.db.list('/products/').push( product );

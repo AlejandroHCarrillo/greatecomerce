@@ -1,10 +1,9 @@
 <div class="row">
   <div class="col-md-6">
-
     <form #f="ngForm" (ngSubmit)="save(f.value)">
       <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" #title="ngModel" ngModel name="title" id="title" class="form-control" required>
+        <input type="text" #title="ngModel" [(ngModel)]="product.title" name="title" id="title" class="form-control" required>
         <div class="alert alert-danger" *ngIf="title.touched && title.invalid">El nombre del producto es requerido.</div>
       </div>
       
@@ -15,7 +14,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input type="number" #price="ngModel" ngModel name="price" id="price" class="form-control" required customMin="0">
+          <input type="number" #price="ngModel" [(ngModel)]="product.price" name="price" id="price" class="form-control" required customMin="0">
         </div>
         <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
           <div *ngIf="price.errors?.required">El precio del producto es requerido.</div>
@@ -25,7 +24,7 @@
                 
       <div class="form-group">
         <label for="category">Category</label>
-        <select type="text" #category="ngModel" ngModel name="category" id="category" class="form-control" required>
+        <select type="text" #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
           <option value=""></option>
           <option *ngFor="let cat of categories$ | async " [value]="cat.key">
             {{ cat.name }}      
@@ -36,11 +35,15 @@
         
       <div class="form-group">
         <label for="imageUrl">Image URL</label>
-        <input type="text" #imageUrl="ngModel" ngModel name="imageUrl" id="imageUrl" class="form-control" required>
+        <input type="text" #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" id="imageUrl" class="form-control" required>
         <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">La Url de la imagen del producto es requerido.</div>        
       </div>
         
       <button class="btn btn-primary" type="submit">Save</button>
+      &nbsp;
+      <a class="btn btn-danger" type="button" [routerLink]="['/admin/products']">Back</a>
+
+
     </form>
       
   </div>
@@ -48,10 +51,10 @@
   <div class="col-md-6">
 
     <div class="card" style="width: 18rem;">
-      <img *ngIf="imageUrl.value!==''" [src]="imageUrl.value" class="card-img-top" [alt]="title.value">
+      <img *ngIf="product.imageUrl" [src]="product.imageUrl" class="card-img-top" [alt]="product.title">
       <div class="card-body">
-        <h5 class="card-title">{{ title.value }}</h5>
-        <p class="card-text">{{ price.value | currency :'USD':true }} </p>
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">{{ product.price | currency :'USD':true }} </p>
       </div>
     </div>
 
