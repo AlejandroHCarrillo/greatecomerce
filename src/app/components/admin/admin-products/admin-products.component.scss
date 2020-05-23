@@ -1,7 +1,7 @@
-:host ::ng-deep .ui-table-customers {
+:host ::ng-deep .ui-table-products {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
     
-    .customer-badge {
+    .product-badge {
         border-radius: 2px;
         padding: .25em .5em;
         text-transform: uppercase;
@@ -9,27 +9,27 @@
         font-size: 12px;
         letter-spacing: .3px;
     
-        &.status-qualified {
+        &.status-vegetables {
             background-color: #C8E6C9;
             color: #256029;
         }
     
-        &.status-unqualified {
+        &.status-fruits {
             background-color: #FFCDD2;
             color: #C63737;
         }
     
-        &.status-negotiation {
+        &.status-bread {
             background-color: #FEEDAF;
             color: #8A5340;
         }
     
-        &.status-new {
+        &.status-dairy {
             background-color: #B3E5FC;
             color: #23547B;
         }
     
-        &.status-renewal {
+        &.status-seasonings {
             background-color: #ECCFFF;
             color: #694382;
         }
@@ -93,8 +93,24 @@
         float: right;
     
         input {
-            width: 200px;
+            width: 100%;
         }
+    }
+
+    .controls-right{
+        display: flex;
+        text-align: right;
+        width: auto;
+    }
+
+    // .ui-cell-image {
+    //     display: flex;
+    //     text-align: right;
+    //     width: 10px;
+    // }
+
+    input.ui-column-filter {
+        width: 100%;
     }
 
     .ui-datepicker {
@@ -126,7 +142,12 @@
         }
 
         &:first-child {
-            width: 5em;
+            width: 2em;
+            text-align: center;
+        }
+
+        &:nth-child(2){
+            width: 4rem;
             text-align: center;
         }
 
@@ -161,12 +182,16 @@
 }
 
 /* Responsive */
-@media screen and (max-width: 64em) {
+@media screen and (max-width: 40em) {
     :host ::ng-deep .ui-table {
-        &.ui-table-customers {
+        &.ui-table-products {
             .ui-table-thead > tr > th,
             .ui-table-tfoot > tr > td {
                 display: none !important;
+            }
+            
+            input.ui-column-filter {
+                width: 20px;
             }
 
             .ui-table-tbody > tr > td {

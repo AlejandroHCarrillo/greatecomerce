@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
-import { Product } from 'src/app/models/product.model';
+import { ProductService } from './../../../services/product.service';
+import { Product } from './../../../models/product.model';
 import { Subscription } from 'rxjs';
 
 import { TableModule, Table } from 'primeng/table';
@@ -15,7 +15,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   filteredProducts: Product[] = [];
   subcription: Subscription;
 
-  cols: any[];
   selectedProducts: Product[];
   loading: boolean = true;
   @ViewChild('dt') table: Table;
@@ -23,13 +22,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService) { }
   
   ngOnInit(): void {
-    
-    this.cols = [
-      { field: 'imageUrl', header: 'Img' },
-      { field: 'title', header: 'Title' },
-      { field: 'category', header: 'Category' },
-      { field: 'price', header: 'Price' }
-    ];
     this.getProducts();
     this.loading = false;
   }

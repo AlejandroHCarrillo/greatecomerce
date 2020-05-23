@@ -9,11 +9,11 @@
 <p-table #dt [value]="filteredProducts" *ngIf="filteredProducts"
         [(selection)]="selectedProducts" 
         dataKey="uid" 
-        styleClass="ui-table-customers" 
+        styleClass="ui-table-products" 
         [rowHover]="true"
         [rows]="10" 
         [showCurrentPageReport]="true" 
-        [rowsPerPageOptions]="[10,25,50]" 
+        [rowsPerPageOptions]="[5,10,25,50]" 
         [loading]="loading"
         [paginator]="true" 
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -36,17 +36,16 @@
         <th pSortableColumn="category">Category<p-sortIcon field="category"></p-sortIcon></th>
         <th pSortableColumn="price">Price<p-sortIcon field="price"></p-sortIcon></th>
         <th></th>
-        <th></th>  
       </tr>
 
       <tr>
         <th><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
         <th></th>
         <th>
-          <input pInputText type="text" (input)="dt.filter($event.target.value, 'title', 'startsWith')" placeholder="Search by title" class="ui-column-filter">
+          <input pInputText type="text" (input)="dt.filter($event.target.value, 'title', 'startsWith')" placeholder="" class="ui-column-filter">
         </th>
         <th>
-          <input pInputText type="text" (input)="dt.filter($event.target.value, 'category', 'startsWith')" placeholder="Search by category" class="ui-column-filter">
+          <input pInputText type="text" (input)="dt.filter($event.target.value, 'category', 'startsWith')" placeholder="" class="ui-column-filter">
           <!-- <p-dropdown [options]="categories" (onChange)="dt.filter($event.value, 'category', 'equals')" styleClass="ui-column-filter" placeholder="Select a category" >
             <ng-template let-option pTemplate="item">
                 <span [class]="'customer-badge status-' + option.name">{{option.name}}</span>
@@ -62,9 +61,8 @@
         </p-multiSelect> -->
         </th>
         <th>
-          <input pInputText type="number" (input)="dt.filter($event.target.value, 'price', 'startsWith')" placeholder="Search by price" class="ui-column-filter">
+          <input pInputText type="number" (input)="dt.filter($event.target.value, 'price', 'startsWith')" placeholder="" class="ui-column-filter">
         </th>
-        <th></th>
         <th></th>
       </tr>
 
@@ -74,34 +72,34 @@
         <td>
           <p-tableCheckbox [value]="item"></p-tableCheckbox>
         </td>
-        <td>
+        <td class="ui-cell-image">
+          <span class="ui-column-title">Image:</span>      
           <img *ngIf="item.imageUrl" [src]="item.imageUrl"  style="height: 30px; width: auto;" [alt]="item.title">
         </td>
-        <td>{{ item.title }}</td>
-        <td>{{ item.category }}</td>
-        <td>{{ item.price | currency:"USD": "symbol" }}</td>
-        <td><a class="btn btn-warning" [routerLink]="['/admin/products/', item.key]" >Edit</a></td>
-        <td><button class="btn btn-danger" (click)="delete(item.key)" >Delete</button></td>  
+        <td>
+          <span class="ui-column-title">Name:</span>      
+          {{ item.title }}</td>
+        <td>
+          <span class="ui-column-title">Category:</span>
+          <span [class]="'product-badge status-' + item.category">{{item.category}}</span>
+        </td>
+        <td>
+          <span class="ui-column-title">Price:</span>
+          {{ item.price | currency:"USD": "symbol" }}
+        </td>
+        <td class="controls-right">
+          <a class="btn btn-warning btn-sm" [routerLink]="['/admin/products/', item.key]" >Edit</a>
+          &nbsp;
+          <button class="btn btn-danger btn-sm" (click)="delete(item.key)" >Del</button></td>  
       </tr>
   </ng-template>
   <ng-template pTemplate="summary">
     There are {{ filteredProducts?.length }} products
   </ng-template>
-  <ng-template pTemplate="footer">
-      <tr>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>5</th>
-        <th>6</th>
-        <th>7</th>
-      </tr>
-  </ng-template>
   
   <ng-template pTemplate="emptymessage">
     <tr>
-        <td colspan="6" style="text-align:left">No products found.</td>
+        <td colspan="7" style="text-align:left">No products found.</td>
     </tr>
   </ng-template>
   
@@ -109,7 +107,7 @@
 
 
 <!-- tabla de bootstrap -->
-<table  class="table table-striped table-hover  table-sm">
+<!-- <table  class="table table-striped table-hover  table-sm">
   <thead class="thead-dark">
     <tr>
       <th>Img</th>
@@ -132,4 +130,4 @@
       <td><button class="btn btn-danger" (click)="delete(item.key)" >Delete</button></td>
     </tr>
   </tbody>
-</table>
+</table> -->
