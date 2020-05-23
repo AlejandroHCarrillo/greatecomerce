@@ -1,19 +1,10 @@
 # GreatEcomerce
 
+Original github project course 
+https://github.com/mosh-hamedani/organic-shop/tree/master/src/app/shopping
+
 Breve resumen de como crear un CRUD con Firebase
 https://dottedsquirrel.com/angular/how-to-crud-in-angular-firebase-firestore/
-
-Querys y ordenamientos
-
-https://github.com/angular/angularfire/blob/master/docs/rtdb/querying-lists.md
-
-Listas "Como mapear el payload"
-https://github.com/angular/angularfire/blob/master/docs/rtdb/lists.md
-
-custom validations
-https://www.concretepage.com/angular-2/angular-4-min-max-validation
-https://angular.io/guide/attribute-directives
-
 
 ## Install firebase
 npm install @angular/fire firebase --save
@@ -26,6 +17,85 @@ ng add @ng-bootstrap/ng-bootstrap
 
 https://ng-bootstrap.github.io/#/getting-started
 
+
+
+## installar angular 4 data table NO FUNCIONA CON ANGULAR 9
+
+npm install angular-4-data-table --save
+
+Production (Minification)
+Some times this can cause problems.
+To fix it use import like this
+
+_**import { DataTableModule } from 'angular-4-data-table';**_
+
+and for production build use
+
+_**ng build --prod --aot=false**_
+
+## instalar prime controls
+
+https://primefaces.org/primeng/showcase/#/setup
+npm install primeng --save
+npm install primeicons --save
+
+npm install @angular/cdk --save
+After upgrading to Angular 9 and PrimeNg 9 (rc.4), I get
+
+ERROR in The target entry-point "primeng" has missing dependencies:
+
+chart.js
+after manually installing chart.js I get same error but with
+
+quill
+after installing quill I get same error with
+
+@fullcalendar/core
+Finally it then compiles.
+
+If primeng needs these dependencies, then it should install them.
+
+npm install chart.js --save
+npm install quill --save
+
+also remember to update your angular.json file:
+
+"scripts": [
+"node_modules/chart.js/dist/Chart.js"
+"node_modules/quill/dist/quill.js"
+]
+
+
+## Autentificacion 
+
+https://angular-templates.io/tutorials/about/firebase-authentication-with-angular
+
+## Manejo de listas en firebase
+https://github.com/angular/angularfire/blob/master/docs/rtdb/lists.md
+
+## Querys y ordenamientos
+
+https://github.com/angular/angularfire/blob/master/docs/rtdb/querying-lists.md
+
+
+Listas "Como mapear el payload"
+https://github.com/angular/angularfire/blob/master/docs/rtdb/lists.md
+
+## Validaciones personalizadas  - custom validations
+https://angular.io/guide/attribute-directives
+https://www.concretepage.com/angular-2/angular-4-min-max-validation
+
+validators recomendados por el curso pero no funcionaron 
+Instalar libreria
+npm  install ng2-validation --save
+
+Uso:
+
+https://yuyang041060120.github.io/ng2-validation/index.html
+https://github.com/yuyang041060120/ng2-validation
+
+
+
 ## Uso del switchMap
 https://blog.angular-university.io/rxjs-switchmap-operator/
 
@@ -33,17 +103,25 @@ https://blog.angular-university.io/rxjs-higher-order-mapping/
 
 https://www.concretepage.com/questions/634
 
+## templates Angular
+https://www.creative-tim.com/product/now-ui-dashboard-angular
 
-## Validaciones personalizadas
-Instalar libreria
-npm  install ng2-validation --save
+## Localize error
 
-Uso:
+Uncaught Error: It looks like your application or one of its dependencies is using i18n. Angular 9 introduced a global `$localize()` function that needs to be loaded. Please run `ng add @angular/localize` from the Angular CLI. (For non-CLI projects, add `import '@angular/localize/init';` to your `polyfills.ts` file. For server-side rendering applications add the import to your `main.server.ts` file.)
 
-https://github.com/yuyang041060120/ng2-validation
+**ng add @angular/localize**
+**import '@angular/localize/init';**
 
+mas informacion (parece que no funciona): 
 
+https://stackoverflow.com/questions/57953317/angular-9-introduced-a-global-localize-function-that-needs-to-be-loaded
 
+You need to make sure you have the @angular/localize package first:
+
+npm install @angular/localize --save
+
+Then, import '@angular/localize/init' in your polyfills.ts file just like the error says
 
 
 

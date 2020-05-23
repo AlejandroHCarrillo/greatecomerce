@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+// import { DataTableModule } from 'angular-4-data-table';
+import { TableModule } from 'primeng/table';
+// import { DropdownModule } from 'primeng/primeng';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -58,7 +61,9 @@ import { CustomMaxDirective } from './directives/custom-max-validator.directive'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    // CustomFormsModule,
+    // DataTableModule,
+    TableModule,
+    // DropdownModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
