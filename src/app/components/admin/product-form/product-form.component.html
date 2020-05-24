@@ -22,7 +22,6 @@
         </div>
       </div>
                 
-      <!-- {{ categories$ | async | json }} -->
       <div class="form-group">
         <label for="category">Category</label>
         <select type="text" #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
@@ -50,15 +49,6 @@
   </div>
 
   <div class="col-md-6">
-
-
-    <div class="card" style="width: 18rem;">
-      <img *ngIf="product.imageUrl" [src]="product.imageUrl" class="card-img-top" [alt]="product.title">
-      <div class="card-body">
-        <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">{{ product.price | currency :'USD':true }} </p>
-      </div>
-    </div>
-
+    <product-card [product]="product" [show-actions]="false"></product-card>
   </div>
 </div>

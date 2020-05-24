@@ -13,6 +13,10 @@
         <a class="nav-link" [routerLink]="['/shopping-cart']" routerLinkActive="router-link-active"  >Shopping cart</a>
       </li>
 
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/products']">Productos</a>
+      </li>
+
       <ng-template #anonymusUser>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Log in</a>
@@ -42,11 +46,9 @@
       <li *ngIf="appUser" class="nav-item" routerLinkActive="active">
         <a class="nav-link" (click)="logout()" >Log out</a>
       </li>
-
-
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/admin/products']" >Productos</a>
-      </li>
+      <!-- <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/products']">Productos</a>
+      </li> -->
 
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">

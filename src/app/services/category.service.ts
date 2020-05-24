@@ -9,7 +9,7 @@ export class CategoryService {
 
   constructor(private db:AngularFireDatabase) { }
 
-  getCategories(){
+  getAll(){
     return this.db.list('/categories', ref => ref.orderByChild('name')).snapshotChanges()
     .pipe( // Este map elimina el payload y asigna directamente el key y el name en el mismo objeto para cada elemento
             map(changes => 

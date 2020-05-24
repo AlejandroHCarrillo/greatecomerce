@@ -16,10 +16,11 @@ import { ProductFormComponent } from './components/admin/product-form/product-fo
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '', component: ProductsComponent},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'products', component: ProductsComponent},
+  // { path: 'products/:category', component: ProductsComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent },
 
   { path: 'check-out', component:CheckoutComponent, canActivate: [ AuthGuard ] },
