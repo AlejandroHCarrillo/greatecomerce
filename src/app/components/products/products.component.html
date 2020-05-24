@@ -4,8 +4,11 @@
       <product-filter [category]="categorySelected"></product-filter>
     </div>
     <div class="col">    
-      <div class="row">
-        <ng-container *ngFor="let item of filteredProducts; let i = index ">
+      <div class="row">        
+        <div *ngIf="filteredProducts.length===0" class="col alert alert-warning" role="alert">
+          No products found.
+        </div>
+        <ng-container *ngFor="let item of filteredProducts; let i = index ">          
           <div class="col">
             <product-card [product]="item" [show-actions]="true"></product-card>
           </div>

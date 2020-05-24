@@ -46,19 +46,6 @@
         </th>
         <th>
           <input pInputText type="text" (input)="dt.filter($event.target.value, 'category', 'startsWith')" placeholder="" class="ui-column-filter">
-          <!-- <p-dropdown [options]="categories" (onChange)="dt.filter($event.value, 'category', 'equals')" styleClass="ui-column-filter" placeholder="Select a category" >
-            <ng-template let-option pTemplate="item">
-                <span [class]="'customer-badge status-' + option.name">{{option.name}}</span>
-            </ng-template>
-          </p-dropdown> -->
-          <!-- <p-multiSelect [options]="representatives" placeholder="All" (onChange)="onRepresentativeChange($event)" styleClass="ui-column-filter" optionLabel="name">
-            <ng-template let-option pTemplate="item">
-                <div class="ui-multiselect-representative-option">
-                    <img [alt]="option.label" src="assets/showcase/images/demo/avatar/{{option.value.image}}" width="32" />
-                    <span>{{option.label}}</span>
-                </div>
-            </ng-template>
-        </p-multiSelect> -->
         </th>
         <th>
           <input pInputText type="number" (input)="dt.filter($event.target.value, 'price', 'startsWith')" placeholder="" class="ui-column-filter">
@@ -99,7 +86,11 @@
   
   <ng-template pTemplate="emptymessage">
     <tr>
-        <td colspan="7" style="text-align:left">No products found.</td>
+        <td colspan="6" style="text-align:center">
+          <div class="alert alert-warning" role="alert">
+            No products found.
+          </div>
+        </td>
     </tr>
   </ng-template>
   

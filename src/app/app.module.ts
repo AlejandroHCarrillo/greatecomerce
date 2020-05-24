@@ -39,6 +39,7 @@ import { CustomMinDirective } from './directives/custom-min-validator.directive'
 import { CustomMaxDirective } from './directives/custom-max-validator.directive';
 import { ProductFilterComponent } from './components/products/product-filter.component';
 import { ProductCardComponent } from './components/products/product-card.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ProductCardComponent } from './components/products/product-card.compone
     AdminAuthGuard,
     UserService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
