@@ -1,3 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 .container{ padding-top: 10px; }
 
+td.currency{
+  text-align: right;
+  padding-right:30px;
+}
+
+td.total{
+  font-weight: bold;
+}

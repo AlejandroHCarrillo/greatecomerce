@@ -31,7 +31,11 @@ export class ShoppingCartService {
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId)
                   .snapshotChanges()
-                  .pipe( map ( x => new ShoppingCart( ((x.payload.val() as ShoppingCart).items as ShoppingCartItem[]) ) ) ) ;
+                  .pipe( 
+                    map ( x => {
+                      return new ShoppingCart( ((x.payload.val()as any).items  as { [ productId : string ]: ShoppingCartItem }) ); 
+                    } )                    
+                  ); 
   }
 
   private getItem(cartId: string, productId: string){

@@ -32,7 +32,21 @@ export class ProductCardComponent implements OnInit {
 
   getQuantity(){
     if(!this.shoppingCart) return 0;
-    let item = this.shoppingCart.items[this.product.key];
+      
+    let productIndex = this.getProductIndex(this.product.key);
+    if(productIndex < 0 ) return 0;
+    
+    let item = this.shoppingCart.items[productIndex];
     return item ? item.quantity : 0;
+  }
+
+  private getProductIndex(productId: string){
+    for (let i = 0; i < this.shoppingCart.items.length; i++) {
+      const element = this.shoppingCart.items[i];
+      if (element.product.key === productId){
+        return i;
+      }
+    }
+    return -1;
   }
 }

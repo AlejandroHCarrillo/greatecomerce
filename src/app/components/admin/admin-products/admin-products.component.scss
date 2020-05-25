@@ -103,12 +103,6 @@
         width: auto;
     }
 
-    // .ui-cell-image {
-    //     display: flex;
-    //     text-align: right;
-    //     width: 10px;
-    // }
-
     input.ui-column-filter {
         width: 100%;
     }
@@ -151,6 +145,16 @@
             text-align: center;
         }
 
+        &:nth-child(4){
+            width: 10rem;
+            text-align: center;
+        }
+        &:nth-child(5){
+            width: 5rem;
+            text-align: center;
+        }
+
+
         &:last-child {
             width: 8em;
             text-align: center;
@@ -169,6 +173,12 @@
         &:last-child {
             width: 8em;
             text-align: center;
+        }
+
+        &.ui-column-price{
+            width: 3em;
+            text-align: right;
+            padding-right: 20px;
         }
     }
 
