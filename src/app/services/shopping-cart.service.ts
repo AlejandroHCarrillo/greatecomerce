@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Product } from '../models/product.model';
-import { itemProduct } from '../models/itemProduct.model';
 import { promise } from 'protractor';
+import { ShoppingCartItem } from '../models/shopping-cart-item.model';
+import { ShoppingCart } from '../models/shopping-cart.model';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +26,12 @@ export class ShoppingCartService {
     
   }
   
-  async getCart(){
+  // Promise<AngularFirebaseObject<ShoppingCart>>
+  async getCart(): Promise<Observable<ShoppingCart>>{
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId);
+    return this.db.object('/shopping-carts/' + cartId)
+                  .snapshotChanges()
+                  .pipe( map ( x => new ShoppingCart( ((x.payload.val() as ShoppingCart).items as ShoppingCartItem[]) ) ) ) ;
   }
 
   private getItem(cartId: string, productId: string){
@@ -46,7 +52,7 @@ export class ShoppingCartService {
 
     let refSubs = item$.snapshotChanges().subscribe( resp => {              
               if(resp.key) {
-                let currenrQty = (resp.payload.val() as itemProduct).quantity;
+                let currenrQty = (resp.payload.val() as ShoppingCartItem).quantity;
                 item$.update({ product: product, quantity: currenrQty + increment }); 
               } else {
                 item$.set({ product: product, quantity: 1 });

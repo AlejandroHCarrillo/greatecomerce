@@ -4,13 +4,31 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['/products']" routerLinkActive="router-link-active"> Products <span class="sr-only">(current)</span></a>
+    </li>    
+    <!-- <li class="nav-link" >
+      <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">
+        {{ cart.totalItemsCount }}
+      </span>  
+    </li>  -->
+    <!-- <li class="nav-link" >sum: {{ shoppingCartItemSum }}</li>  --> 
+  </ul>
+
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/shopping-cart']" routerLinkActive="router-link-active"  >Shopping cart</a>
+        <a class="nav-link" [routerLink]="['/shopping-cart']" routerLinkActive="router-link-active">
+          Shopping Cart
+          <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">
+            {{ cart.totalItemsCount }}
+          </span>
+        </a>
       </li>
 
       <li class="nav-item" routerLinkActive="active">
