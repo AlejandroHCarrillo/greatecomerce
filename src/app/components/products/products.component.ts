@@ -1,22 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from './../../models/product.model';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styles: [ `  ` ]
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   products : Product[] = [];
   filteredProducts: Product[] = [];
   categorySelected;
-
+  cart;
+  subsRef: Subscription;
 
   constructor(private route: ActivatedRoute,
-              private productService: ProductService) { 
+              private productService: ProductService,
+              private shoppingCartService: ShoppingCartService
+              ) { 
 
               this.productService.getAll().pipe(
                 switchMap( data => {
@@ -28,9 +33,13 @@ export class ProductsComponent implements OnInit {
               });
 
   }
+  ngOnDestroy(): void {
+    this.subsRef.unsubscribe();
+  }
 
-  ngOnInit(): void {
-
+  async ngOnInit() {
+    this.subsRef = (await this.shoppingCartService.getCart()).valueChanges()
+               .subscribe( cart => this.cart = cart) ;
   }
 
   getProducts(){
