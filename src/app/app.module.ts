@@ -40,6 +40,7 @@ import { CustomMaxDirective } from './directives/custom-max-validator.directive'
 import { ProductFilterComponent } from './components/products/product-filter.component';
 import { ProductCardComponent } from './components/products/product-card.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
+import { ProductQuantityComponent } from './components/products/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     CustomMinDirective,
     CustomMaxDirective,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,

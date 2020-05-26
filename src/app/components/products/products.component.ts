@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from './../../models/product.model';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { ShoppingCart } from 'src/app/models/shopping-cart.model';
 
 @Component({
@@ -12,47 +12,42 @@ import { ShoppingCart } from 'src/app/models/shopping-cart.model';
   templateUrl: './products.component.html',
   styles: [ `  ` ]
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
   products : Product[] = [];
   filteredProducts: Product[] = [];
   categorySelected;
-  cart: ShoppingCart;
-  subsRef: Subscription;
+  cart$: Observable<ShoppingCart>;
 
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
               private shoppingCartService: ShoppingCartService
               ) { 
 
-              this.productService.getAll().pipe(
-                switchMap( data => {
-                            this.products = data;
-                            return route.queryParamMap;
-              })).subscribe( params => {
-                            this.categorySelected = params.get('category');
-                            this.filter(this.categorySelected);
-              });
-
-  }
-  ngOnDestroy(): void {
-    this.subsRef.unsubscribe();
   }
 
   async ngOnInit() {    
-    this.subsRef = (await this.shoppingCartService.getCart())
-               .subscribe( cart => {
-                            this.cart = cart;
-               }) ;
+   this.cart$ = await this.shoppingCartService.getCart();
+
+    this.populateProducts();
+
   }
 
-  getProducts(){
-    this.productService.getAll().subscribe( data => {
-      this.products = data;
-      this.filteredProducts = this.products;
-    });
+  private populateProducts(){
+    let x: ShoppingCart;
+    
+    this.productService.getAll().pipe(
+      switchMap( data => {
+                  this.products = data;
+                  return this.route.queryParamMap;
+      })).subscribe( params => {
+                    this.categorySelected = params.get('category');
+                    this.applyFilter();
+      });
   }
 
-  filter(query: string){
+  private applyFilter(){
+    let query = this.categorySelected;
+
     this.filteredProducts = (query) ? 
                             this.products.filter(p => p.category.toLowerCase().includes(query.toLowerCase()) ) :
                             this.products;

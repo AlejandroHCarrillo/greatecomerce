@@ -4,7 +4,7 @@
       <product-filter [category]="categorySelected"></product-filter>
     </div>
     <div class="col">    
-      <div class="row">        
+      <div class="row" *ngIf="cart$ | async as cart" >        
         <div *ngIf="filteredProducts.length===0" class="col alert alert-warning" role="alert">
           No products found.
         </div>

@@ -1,14 +1,29 @@
 import { ShoppingCartItem } from './shopping-cart-item.model';
+import { Product } from './product.model';
 
 export class ShoppingCart {
   items: ShoppingCartItem[] = [];
 
-  constructor(public itemsMap: { [ productId : string ]: ShoppingCartItem }){    
+  constructor(private itemsMap: { [ productId : string ]: ShoppingCartItem }){    
+    this.itemsMap = itemsMap || {};
+    
     for (let productId in this.itemsMap) {
-      if(itemsMap[productId].quantity > 0){
-        let item = itemsMap[productId];
-        this.items.push(new ShoppingCartItem(item.product, item.quantity));
+
+      if(itemsMap[productId].quantity > 0 ){
+
+        let item = (itemsMap[productId] as any);
+
+        let x = new ShoppingCartItem( {
+          ...item,
+          key : productId,        
+          quantity : item.quantity
+        });
+        Object.assign( x, item);
+
+        this.items.push(x);
       }
+      // console.log("this.items:", this.items);
+      
     }
 
   }
@@ -27,14 +42,19 @@ export class ShoppingCart {
 
   get totalPrice(){
     let sum = 0;
-    for (let productId in this.itemsMap) {   
-      // console.log(this.itemsMap[productId]);         
-      // sum += this.itemsMap[productId].totalPrice;
-      sum += this.itemsMap[productId].quantity * this.itemsMap[productId].product.price;
-
+    for (let productId in this.itemsMap) {
+      // sum += (this.itemsMap[productId] as ShoppingCartItem).totalPrice;
+      sum += this.itemsMap[productId].price * this.itemsMap[productId].quantity ;
     }
     return sum;
   }
 
-
+  getQuantity(product: Product){
+    if ((product as any).quantity){
+      return (product as any).quantity;
+    }
+     let item = this.itemsMap[product.key];    
+     return item ? item.quantity : 0;
+  }
+  
 }
