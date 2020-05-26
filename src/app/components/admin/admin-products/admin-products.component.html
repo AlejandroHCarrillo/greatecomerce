@@ -70,7 +70,7 @@
           <span class="ui-column-title">Category:</span>
           <span [class]="'product-badge status-' + item.category">{{item.category}}</span>
         </td>
-        <td>
+        <td class="ui-column-price">
           <span class="ui-column-title">Price:</span>
           {{ item.price | currency:"USD": "symbol" }}
         </td>

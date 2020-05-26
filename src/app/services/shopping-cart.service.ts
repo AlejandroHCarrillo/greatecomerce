@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Product } from '../models/product.model';
-import { promise } from 'protractor';
 import { ShoppingCartItem } from '../models/shopping-cart-item.model';
 import { ShoppingCart } from '../models/shopping-cart.model';
 import { map } from 'rxjs/operators';
@@ -31,40 +30,58 @@ export class ShoppingCartService {
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId)
                   .snapshotChanges()
-                  .pipe( map ( x => new ShoppingCart( ((x.payload.val() as ShoppingCart).items as ShoppingCartItem[]) ) ) ) ;
+                  .pipe( 
+                    map ( x => {
+                      return new ShoppingCart( ((x.payload.val()as any).items  as { [ productId : string ]: ShoppingCartItem }) ); 
+                    } )                    
+                  ); 
+  }
+  
+  async addToCart (product: Product){
+    this.updateItem(product, 1);
+  }
+  
+  async removeFromCart(product : Product){
+    this.updateItem(product, -1);
+  }
+
+  async clearCart(){
+    let cartId = await this.getOrCreateCartId();
+    return this.db.object('/shopping-carts/' + cartId  + '/items' ).remove();
+  }
+  
+  private create(){
+    return this.db.list('/shopping-carts/')
+                  .push( { dateCreated : new Date().getTime() } );
   }
 
   private getItem(cartId: string, productId: string){
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId );
   }
 
-  async addToCart (product: Product){
-    this.updateProductQuantity(product, 1);
-  }
-
-  async removeFromCart(product : Product){
-    this.updateProductQuantity(product, -1);
-  }
-
-  private async updateProductQuantity(product : Product, increment:number){
+  private async updateItem(product : Product, increment:number){
     let cartId = await this.getOrCreateCartId();
     let item$ = this.getItem(cartId, product.key);
-
-    let refSubs = item$.snapshotChanges().subscribe( resp => {              
-              if(resp.key) {
-                let currenrQty = (resp.payload.val() as ShoppingCartItem).quantity;
-                item$.update({ product: product, quantity: currenrQty + increment }); 
+   
+    let refSubs = item$.snapshotChanges()
+            .subscribe( resp => {
+              
+              let currenrQty = 0;      
+              if(resp.payload.val()) {
+                currenrQty = ((resp.payload.val() as ShoppingCartItem).quantity || 0);
+              } 
+              if( currenrQty === 1 && increment < 0 ){
+                item$.remove();
               } else {
-                item$.set({ product: product, quantity: 1 });
-              }              
+                item$.update({
+                                title: product.title, 
+                                imageUrl: product.imageUrl, 
+                                price: product.price, 
+                                quantity: (currenrQty || 0) + increment }); 
+              }
               refSubs.unsubscribe();
             });
   }
 
-
-  private create(){
-    return this.db.list('/shopping-carts/')
-                  .push( { dateCreated : new Date().getTime() } );
-  }
 
 }
