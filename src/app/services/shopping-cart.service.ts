@@ -32,6 +32,10 @@ export class ShoppingCartService {
                   .snapshotChanges()
                   .pipe( 
                     map ( x => {
+                      if(x.payload.val() === null){
+                        console.log("no existe el cart en la base de datos");
+                        localStorage.removeItem('cartId');
+                      }
                       return new ShoppingCart( ((x.payload.val()as any).items  as { [ productId : string ]: ShoppingCartItem }) ); 
                     } )                    
                   ); 

@@ -41,6 +41,9 @@ import { ProductFilterComponent } from './components/products/product-filter.com
 import { ProductCardComponent } from './components/products/product-card.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { ProductQuantityComponent } from './components/products/product-quantity.component';
+import { OrderService } from './services/order.service';
+import { ShoppingCartSummaryComponent } from './components/checkout/shopping-cart-summary.component';
+import { ShippingFormComponent } from './components/checkout/shipping-form.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,9 @@ import { ProductQuantityComponent } from './components/products/product-quantity
     CustomMaxDirective,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ShoppingCartSummaryComponent,
+    ShippingFormComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +92,8 @@ import { ProductQuantityComponent } from './components/products/product-quantity
     UserService,
     CategoryService,
     ProductService,
-    ShoppingCartService
+    ShoppingCartService, 
+    OrderService
   ],
   bootstrap: [AppComponent]
 })
