@@ -22,8 +22,13 @@ export class OrderService {
   }
 
   getOrdersByUser(userId: string) {
-    // TODO: NO ESTA FILTRANDO POR USUARIO    
-    return this.db.list('/orders', ref => ref.equalTo(userId).orderByChild('name')).snapshotChanges();
-    // return this.db.list('/orders').snapshotChanges();
+    // TODO: NO ESTA FILTRANDO POR USUARIO
+    return this.db.list('/orders', ref => {
+      // Para hacer un query debemos ordenar por el hijo que queremos filtrar para establecer el campo
+      // despues pasar dentro de equalTo el valor de para filtrar
+      // Nota: Query.orderByChild: You can't combine multiple orderBy calls.
+      return ref.orderByChild("userId").equalTo(userId);
+    }).snapshotChanges();
   }
+
 }

@@ -78,6 +78,9 @@ https://github.com/angular/angularfire/blob/master/docs/rtdb/lists.md
 https://github.com/angular/angularfire/blob/master/docs/rtdb/querying-lists.md
 
 
+https://firebase.google.com/docs/database/web/lists-of-data#filtering_data 
+
+
 Listas "Como mapear el payload"
 https://github.com/angular/angularfire/blob/master/docs/rtdb/lists.md
 
