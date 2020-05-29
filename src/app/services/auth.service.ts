@@ -28,7 +28,7 @@ export class AuthService {
 
     switch (proveedor) {
       case 'google':
-        this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());        
+        this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());        
         break;
       case 'twitter':
           this.afAuth.signInWithPopup(new firebase.auth.TwitterAuthProvider());        
