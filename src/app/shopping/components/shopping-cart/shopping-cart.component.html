@@ -22,7 +22,11 @@
         <td>
             <div *ngIf="item.imageUrl" [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="thumbnail"></div>
         </td>
-        <td>{{ item.title }}</td>
+        <td>{{ item.title }}
+          <button (click)="removeProduct(item)" 
+          data-toggle="tooltip" data-placement="top" title="Delete {{ item.title }}"
+          class="btn btn-light btn-sm float-right">x</button>  
+        </td>
         <td>
           <product-quantity [product]="item" [shopping-cart]="cart"></product-quantity>
         </td>

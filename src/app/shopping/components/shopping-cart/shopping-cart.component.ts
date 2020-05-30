@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
+import { Product } from 'shared/models/product.model';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -24,5 +25,11 @@ export class ShoppingCartComponent implements OnInit {
 
   clearCart() {
     this.shoppingCartService.clearCart();
+  }
+
+  removeProduct(product: Product){
+    if(confirm(`Are you sure about removing the product ${product.title}?`)){
+      this.shoppingCartService.removeProductFromCart(product);
+    }
   }
 }
