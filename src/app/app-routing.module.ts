@@ -1,19 +1,18 @@
-import { NgModule, Component } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { UserComponent } from './components/user/user.component';
-import { AuthGuard } from 'shared/services/guards/auth.guard';
-import { HomeComponent } from './components/home/home.component';
-import { ProductsComponent } from './components/products/products.component';
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { OrderSuccessComponent } from './components/order-success/order-success.component';
-import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
-import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { AdminAuthGuard } from 'admin/services/guards/admin-auth.guard';
-import { ProductFormComponent } from './admin/components/product-form/product-form.component';
+import { AuthGuard } from 'shared/services/guards/auth.guard';
+
 import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
+import { ProductFormComponent } from './admin/components/product-form/product-form.component';
+import { CheckoutComponent } from './shopping/components/checkout/checkout.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { MyOrdersComponent } from './shopping/components/my-orders/my-orders.component';
+import { OrderSuccessComponent } from './shopping/components/order-success/order-success.component';
+import { ProductsComponent } from './shopping/components/products/products.component';
+import { ShoppingCartComponent } from './shopping/components/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent},

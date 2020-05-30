@@ -8,8 +8,8 @@ import { ProductService } from 'shared/services/product.service';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { UserService } from 'shared/services/user.service';
 
-import { ProductCardComponent } from '../components/products/product-card.component';
-import { ProductQuantityComponent } from '../components/products/product-quantity.component';
+import { ProductCardComponent } from '../shopping/components/products/product-card.component';
+import { ProductQuantityComponent } from '../shopping/components/products/product-quantity.component';
 
 @NgModule({
   declarations: [ 
