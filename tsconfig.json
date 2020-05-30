@@ -16,7 +16,10 @@
       "dom"
     ],
     "paths":{
-      "shared/*" : [ "app/shared/*" ]
+      "shared/*" : [ "app/shared/*" ],
+      "admin/*" : [ "app/admin/*" ],
+      "shopping/*" : [ "app/shopping/*" ],
+      "core/*" : [ "app/core/*" ],
     }
 
   },
