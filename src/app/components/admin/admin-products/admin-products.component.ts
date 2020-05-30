@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ProductService } from './../../../services/product.service';
-import { Product } from './../../../models/product.model';
+import { ProductService } from 'shared/services/product.service';
+import { Product } from 'shared/models/product.model';
 import { Subscription } from 'rxjs';
 
 import { TableModule, Table } from 'primeng/table';
@@ -17,6 +17,11 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   selectedProducts: Product[];
   loading: boolean = true;
+
+  pagesizes= [5, 10, 20, 30, 50, 100];
+
+  pagesize = 10;
+
   @ViewChild('dt') table: Table;
 
   constructor(private productService: ProductService) { }

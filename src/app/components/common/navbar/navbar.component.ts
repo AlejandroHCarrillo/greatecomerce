@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'shared/services/auth.service';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario.model';
-import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
-import { ShoppingCart } from 'src/app/models/shopping-cart.model';
+import { Usuario } from 'shared/models/usuario.model';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
+import { ShoppingCart } from 'shared/models/shopping-cart.model';
 import { Observable } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'bs-navbar',
@@ -28,6 +29,12 @@ export class NavbarComponent implements OnInit  {
   logout(){
     this.authService.logout();
     this.router.navigate(['/']);
+  }
+
+  showMenu;
+  toggleMenu(){
+    this.showMenu = !this.showMenu; 
+    console.log("showMenu: ", this.showMenu);
   }
 
 }

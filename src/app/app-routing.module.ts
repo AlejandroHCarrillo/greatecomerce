@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
-import { AuthGuard } from './services/guards/auth.guard';
+import { AuthGuard } from './shared/services/guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
@@ -11,7 +11,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
-import { AdminAuthGuard } from './services/guards/admin-auth.guard';
+import { AdminAuthGuard } from './shared/services/guards/admin-auth.guard';
 import { ProductFormComponent } from './components/admin/product-form/product-form.component';
 import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
 

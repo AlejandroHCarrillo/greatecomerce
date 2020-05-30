@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
-import { UserService } from './services/user.service';
+import { UserService } from './shared/services/user.service';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,8 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   title = 'greatEcomerce';
   constructor(
-    private userService: UserService, private auth: AuthService, private router: Router ){
+    private userService: UserService, 
+    private auth: AuthService, private router: Router ){
     auth.user$.subscribe(user => { 
       if (!user) { return }
 

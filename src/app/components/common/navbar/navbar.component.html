@@ -1,77 +1,65 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >G</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="z-index: 10000;">
+  <a *ngIf="showMenu" class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >G</a>
+
+  <button (click)="toggleMenu()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
   </button>
+  <!--  [ngClass]="{'collapse navbar-collapse d-flex justify-content-between ': showMenu}"  -->
+  <div class="navbar-collapse" 
+       [ngClass]="{'collapse ': showMenu}"
+      id="navbarNav">
+      <ul class="navbar-nav mr-auto">
 
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['/products']" routerLinkActive="router-link-active"> Products <span class="sr-only">(current)</span></a>
-    </li>    
-    <!-- <li class="nav-link" >
-      <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">
-        {{ cart.totalItemsCount }}
-      </span>  
-    </li>  -->
-    <!-- <li class="nav-link" >sum: {{ shoppingCartItemSum }}</li>  --> 
-  </ul>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/shopping-cart']" routerLinkActive="router-link-active">
-          Shopping Cart
-          <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">
-            {{ cart.totalItemsCount }}
-          </span>
-        </a>
-      </li>
-
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/products']">Productos</a>
-      </li>
-
-      <ng-template #anonymusUser>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Log in</a>
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home <span class="sr-only">(current)</span></a>
         </li>
-      </ng-template>
-      
-
-      <li *ngIf="appUser; else anonymusUser" ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{ appUser.displayName }}
-        </a>
-
-        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['/my/orders']" routerLinkActive="active" >My orders</a>
-          
-          <ng-container *ngIf="appUser.isAdmin" >
+  
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/products']">Productos</a>
+        </li>
+  
+        <ng-template #anonymusUser>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Log in</a>
+          </li>
+        </ng-template>
+        
+  
+        <li *ngIf="appUser; else anonymusUser" ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ appUser.displayName }}
+          </a>
+  
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/my/orders']" routerLinkActive="active" >My orders</a>
+            
+            <ng-container *ngIf="appUser.isAdmin" >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" [routerLink]="['/admin/orders']" routerLinkActive="active" >Manage Orders</a>
+              <a class="dropdown-item" [routerLink]="['/admin/products']" routerLinkActive="active" >Manage Products</a>
+            </ng-container>
+            
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" [routerLink]="['/admin/orders']" routerLinkActive="active" >Manage Orders</a>
-            <a class="dropdown-item" [routerLink]="['/admin/products']" routerLinkActive="active" >Manage Products</a>
-          </ng-container>
-          
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()" >Log out</a>
-        </div>
-      </li>
+            <a class="dropdown-item" (click)="logout()" >Log out</a>
+          </div>
+        </li>
 
-      <li *ngIf="appUser" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" (click)="logout()" >Log out</a>
-      </li>
-      <!-- <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/products']">Productos</a>
-      </li> -->
+      </ul>
 
-    </ul>
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
+      <ul class="navbar-nav">
+        <li *ngIf="appUser" class="nav-item" routerLinkActive="active">
+          <a class="nav-link" (click)="logout()" >Log out</a>
+        </li>
+
+        <li class="nav-item float-right" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/shopping-cart']" routerLinkActive="router-link-active">
+            Shopping Cart
+            <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">
+              {{ cart.totalItemsCount }}
+            </span>
+          </a>
+        </li>
+    
+      </ul>
   </div>
 </nav>

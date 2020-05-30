@@ -28,20 +28,24 @@ import { OrderSuccessComponent } from './components/order-success/order-success.
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './services/guards/auth.guard';
-import { UserService } from './services/user.service';
-import { AdminAuthGuard } from './services/guards/admin-auth.guard';
 import { ProductFormComponent } from './components/admin/product-form/product-form.component';
-import { CategoryService } from './services/category.service';
-import { ProductService } from './services/product.service';
-import { CustomMinDirective } from './directives/custom-min-validator.directive';
-import { CustomMaxDirective } from './directives/custom-max-validator.directive';
 import { ProductFilterComponent } from './components/products/product-filter.component';
 import { ProductCardComponent } from './components/products/product-card.component';
-import { ShoppingCartService } from './services/shopping-cart.service';
+
+import { CustomMinDirective } from './directives/custom-min-validator.directive';
+import { CustomMaxDirective } from './directives/custom-max-validator.directive';
+
+import { AuthService } from './shared/services/auth.service';
+import { AuthGuard } from './shared/services/guards/auth.guard';
+import { UserService } from './shared/services/user.service';
+// import { AdminAuthGuard } from './shared/services/guards/admin-auth.guard';
+import { AdminAuthGuard } from './shared/services/guards/admin-auth.guard';
+import { CategoryService } from './shared/services/category.service';
+import { ProductService } from './shared/services/product.service';
+import { ShoppingCartService } from './shared/services/shopping-cart.service';
+import { OrderService } from './shared/services/order.service';
+
 import { ProductQuantityComponent } from './components/products/product-quantity.component';
-import { OrderService } from './services/order.service';
 import { ShoppingCartSummaryComponent } from './components/checkout/shopping-cart-summary.component';
 import { ShippingFormComponent } from './components/checkout/shipping-form.component';
 

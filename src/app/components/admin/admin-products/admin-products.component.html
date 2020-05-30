@@ -6,14 +6,14 @@
          #query (keyup)="filter(query.value)">
 </p>
 
+<!-- [rowsPerPageOptions]="[5,10,25,50]"  -->
 <p-table #dt [value]="filteredProducts" *ngIf="filteredProducts"
         [(selection)]="selectedProducts" 
         dataKey="uid" 
         styleClass="ui-table-products" 
         [rowHover]="true"
-        [rows]="10" 
+        [rows]="pagesize" 
         [showCurrentPageReport]="true" 
-        [rowsPerPageOptions]="[5,10,25,50]" 
         [loading]="loading"
         [paginator]="true" 
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -82,6 +82,17 @@
   </ng-template>
   <ng-template pTemplate="summary">
     There are {{ filteredProducts?.length }} products
+    <!-- <div class="float-right">
+      <select type="text" 
+        name="pagesize"
+        [(ngModel)]="pagesize" 
+        id="pagesize" >
+        <option *ngFor="let pagesize of pagesizes" [value]="pagesize">
+          {{ pagesize }}      
+        </option>
+      </select>
+      per page
+    </div> -->
   </ng-template>
   
   <ng-template pTemplate="emptymessage">
