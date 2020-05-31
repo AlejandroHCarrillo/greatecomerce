@@ -53,7 +53,8 @@
 
         <li class="nav-item float-right" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/shopping-cart']" routerLinkActive="router-link-active">
-            Shopping Cart
+            Cart
+            <i class="fas fa-shopping-cart"></i>
             <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">
               {{ cart.totalItemsCount }}
             </span>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminModule } from 'admin/admin.module';
 import { SharedModule } from 'shared/shared.module';
@@ -27,6 +28,7 @@ import { CoreModule } from 'core/core.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     SharedModule,
     CoreModule,
     AdminModule,
