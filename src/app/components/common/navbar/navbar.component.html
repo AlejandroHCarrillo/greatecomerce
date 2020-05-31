@@ -24,6 +24,9 @@
           </li>
         </ng-template>
         
+      </ul>
+
+      <ul class="navbar-nav">
   
         <li *ngIf="appUser; else anonymusUser" ngbDropdown class="nav-item dropdown">
           <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,10 +46,7 @@
             <a class="dropdown-item" (click)="logout()" >Log out</a>
           </div>
         </li>
-
-      </ul>
-
-      <ul class="navbar-nav">
+        
         <li *ngIf="appUser" class="nav-item" routerLinkActive="active">
           <a class="nav-link" (click)="logout()" >Log out</a>
         </li>

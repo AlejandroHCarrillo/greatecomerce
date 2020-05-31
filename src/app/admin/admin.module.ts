@@ -5,9 +5,9 @@ import { AdminProductsComponent } from 'admin/components/admin-products/admin-pr
 import { ProductFormComponent } from 'admin/components/product-form/product-form.component';
 import { AdminAuthGuard } from 'admin/services/guards/admin-auth.guard';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from 'app/app-routing.module';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'shared/shared.module';
+import { AdminRoutingModule } from './admin-routing.module';
 
 
 @NgModule({
@@ -18,9 +18,9 @@ import { SharedModule } from 'shared/shared.module';
   ],
   imports: [
     CommonModule,
+    AdminRoutingModule,
 
     FormsModule,
-    AppRoutingModule,
     TableModule,
 
     SharedModule
