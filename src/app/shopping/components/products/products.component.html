@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <div class="col-3">
       <product-filter [category]="categorySelected"></product-filter>
@@ -8,12 +9,14 @@
         <div *ngIf="filteredProducts.length===0" class="col alert alert-warning" role="alert">
           No products found.
         </div>
+        
         <ng-container *ngFor="let item of filteredProducts; let i = index ">          
-          <div class="col">
+          <div class="col-md-5">
             <product-card [product]="item" [shopping-cart]="cart"></product-card>
           </div>
           <div *ngIf="(i+1) % 2 === 0" class="w-100"></div>  
         </ng-container>
+
       </div>    
     </div>
   </div>
