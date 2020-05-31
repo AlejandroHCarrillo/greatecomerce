@@ -10,23 +10,17 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { CustomMaxDirective } from './directives/custom-max-validator.directive';
 import { CustomMinDirective } from './directives/custom-min-validator.directive';
+import { CoreModule } from 'core/core.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     
-    LoginComponent,
-    RegisterComponent,
     UserComponent,
-
-    HomeComponent,
 
     CustomMinDirective,
     CustomMaxDirective,
@@ -34,6 +28,7 @@ import { CustomMinDirective } from './directives/custom-min-validator.directive'
   imports: [
     BrowserModule,
     SharedModule,
+    CoreModule,
     AdminModule,
     ShoppingModule,
     
