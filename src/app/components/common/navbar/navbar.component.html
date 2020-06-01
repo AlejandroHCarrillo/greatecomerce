@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="z-index: 10000;">
-  <a *ngIf="showMenu" class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >G</a>
+  <a *ngIf="showMenu" class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >G
+      <!-- <fa-icon [icon]="faCoffee"></fa-icon> -->
+  </a>
 
   <button (click)="toggleMenu()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -11,16 +13,25 @@
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >
+            <fa-icon [icon]="faHome"></fa-icon>
+            Home 
+          <span class="sr-only">(current)</span></a>
         </li>
-  
+
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/products']">Productos</a>
+          <a class="nav-link" [routerLink]="['/products']">
+            <fa-icon [icon]="faGifts"></fa-icon>
+            Productos
+          </a>
         </li>
   
         <ng-template #anonymusUser>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Log in</a>
+            <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">              
+            <fa-icon [icon]="faSignIn"></fa-icon>
+              Log in
+            </a>
           </li>
         </ng-template>
         
@@ -30,6 +41,7 @@
   
         <li *ngIf="appUser; else anonymusUser" ngbDropdown class="nav-item dropdown">
           <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <fa-icon [icon]="faUser"></fa-icon>            
             {{ appUser.displayName }}
           </a>
   
@@ -43,19 +55,24 @@
             </ng-container>
             
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="logout()" >Log out</a>
+            <a class="dropdown-item" (click)="logout()">
+              <fa-icon [icon]="faDoorOpen"></fa-icon>
+              Log out</a>
           </div>
         </li>
         
         <li *ngIf="appUser" class="nav-item" routerLinkActive="active">
-          <a class="nav-link" (click)="logout()" >Log out</a>
+          <a class="nav-link" (click)="logout()" >
+            <fa-icon [icon]="faDoorOpen"></fa-icon>            
+            Log out</a>
         </li>
 
         <li class="nav-item float-right" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/shopping-cart']" routerLinkActive="router-link-active">
-            Cart
-            <i class="fas fa-shopping-cart"></i>
+            <fa-icon [icon]="faShoppingCart"></fa-icon>
+            Cart 
             <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">
+              <fa-icon [icon]="faShoppingCart"></fa-icon>
               {{ cart.totalItemsCount }}
             </span>
           </a>

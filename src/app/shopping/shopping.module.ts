@@ -11,6 +11,7 @@ import { ProductFilterComponent } from './components/products/product-filter.com
 import { ProductsComponent } from './components/products/products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShoppingRoutingModule } from './shopping-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ShoppingRoutingModule } from './shopping-routing.module';
     ProductFilterComponent
   ],
   imports: [
+    NgbModule,
     CommonModule,
     SharedModule,
     ShoppingRoutingModule

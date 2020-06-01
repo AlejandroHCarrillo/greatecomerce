@@ -11,11 +11,11 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'primeng/table';
 
-
-import { ProductCardComponent } from '../shopping/components/products/product-card.component';
-import { ProductQuantityComponent } from '../shopping/components/products/product-quantity.component';
+import { ProductCardComponent } from 'shopping/components/products/product-card.component';
+import { ProductQuantityComponent } from 'shopping/components/products/product-quantity.component';
 
 @NgModule({
   declarations: [ 
@@ -24,6 +24,7 @@ import { ProductQuantityComponent } from '../shopping/components/products/produc
   ],
   imports: [
     CommonModule,
+    NgbModule,
     FormsModule,
     TableModule,
 

@@ -5,13 +5,20 @@ import { Usuario } from 'shared/models/usuario.model';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/shopping-cart.model';
 import { Observable } from 'rxjs';
-import { ThrowStmt } from '@angular/compiler';
+import { faUser, faHome, faShoppingCart, faGifts, faDoorOpen, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'bs-navbar',
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit  {
+  faHome = faHome;
+  faShoppingCart = faShoppingCart;
+  faGifts = faGifts;
+  faDoorOpen = faDoorOpen;
+  faSignIn = faSignInAlt;
+  faUser = faUser;
+
   appUser: Usuario;
   cart$: Observable<ShoppingCart>;
 

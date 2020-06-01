@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+ /* @import "~font-awesome/css/font-awesome.css"  */
+ 
+
 .container{ padding-top: 10px; }
 
 td.currency{
@@ -9,4 +12,4 @@ td.currency{
 th.total{
   text-align: right;
   padding-right:30px;
-}
+} 

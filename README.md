@@ -33,8 +33,7 @@ and for production build use
 
 _**ng build --prod --aot=false**_
 
-## instalar prime controls
-
+## instalar prime controls SI FUNCIONAN PERO CON LIMITACIONES
 https://primefaces.org/primeng/showcase/#/setup
 npm install primeng --save
 npm install primeicons --save
@@ -65,6 +64,13 @@ also remember to update your angular.json file:
 "node_modules/quill/dist/quill.js"
 ]
 
+## Instalar font Awesome
+XXX npm install font-awesome --save
+
+https://www.npmjs.com/package/@fortawesome/angular-fontawesome
+npm i @fortawesome/angular-fontawesome
+
+ng add @fortawesome/angular-fontawesome[@6.14.5]
 
 ## Autentificacion 
 
