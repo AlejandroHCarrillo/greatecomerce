@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit  {
-  showMenu;
+  showMenu = true;
   // faHome = faHome;
   // faShoppingCart = faShoppingCart;
   // faGifts = faGifts;

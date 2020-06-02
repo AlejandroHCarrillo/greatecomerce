@@ -1,10 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="z-index: 10000;">
-  <a *ngIf="showMenu" (click)="toggleMenu()" class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >
-    <i class="fas fa-store"></i> G
+  <div class="container">    
+    <a *ngIf="showMenu" (click)="toggleMenu()" class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >
+      <i class="fas fa-store brand-primary"></i> G
   </a>
-
+  
   <button (click)="toggleMenu()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
   </button>
   <div class="navbar-collapse" 
        [ngClass]="{'collapse ': showMenu}"
@@ -13,29 +14,22 @@
 
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >
-            <i class="fas fa-home"></i>
+            <i class="fas fa-home brand-primary"></i>
             Home 
           <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/products']">
-            <i class="fas fa-gift"></i>
+            <i class="fas fa-gift brand-primary"></i>
             Productos
           </a>
         </li>
- 
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/admin/categories']">
-            <i class="fas fa-grip-horizontal"></i>
-            Categories
-          </a>
-        </li>
- 
+
         <ng-template #anonymusUser>
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">              
-            <i class="fas fa-sign-in-alt"></i>
+            <i class="fas fa-sign-in-alt brand-primary"></i>
               Log in
             </a>
           </li>
@@ -44,10 +38,11 @@
       </ul>
 
       <ul class="navbar-nav">
-  
         <li *ngIf="appUser; else anonymusUser" ngbDropdown class="nav-item dropdown">
           <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i>
+            <img *ngIf="appUser.photoURL" [src]="appUser.photoURL" alt="appUser.displayName" 
+            style="width: 20px; height: auto; border-radius: 100px; vertical-align: top;">
+            <i *ngIf="!appUser.photoURL" class="fas fa-user brand-primary"></i>
             {{ appUser.displayName }}
           </a>
   
@@ -58,32 +53,36 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" [routerLink]="['/admin/orders']" routerLinkActive="active" >Manage Orders</a>
               <a class="dropdown-item" [routerLink]="['/admin/products']" routerLinkActive="active" >Manage Products</a>
+              
+              <a class="dropdown-item" [routerLink]="['/admin/categories']" routerLinkActive="active">
+                <i class="fas fa-grip-horizontal brand-primary"></i>
+                Manage Categories
+              </a>
+              
             </ng-container>
             
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" (click)="logout()">
-              <i class="fas fa-door-open"></i>
+              <i class="fas fa-door-open brand-primary"></i>
               Log out</a>
-          </div>
-        </li>
+            </div>
+          </li>
         
         <li *ngIf="appUser" class="nav-item" routerLinkActive="active">
           <a class="nav-link" (click)="logout()" >
-            <i class="fas fa-door-open"></i>
+            <i class="fas fa-door-open brand-primary"></i>
             Log out</a>
         </li>
 
         <li class="nav-item float-right" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/shopping-cart']" routerLinkActive="router-link-active">
-            <i class="fas fa-shopping-cart"></i>
-            Cart 
             <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">
               <i class="fas fa-shopping-cart"></i>
               {{ cart.totalItemsCount }}
             </span>
           </a>
-        </li>
-    
+        </li>        
       </ul>
+    </div>
   </div>
 </nav>
