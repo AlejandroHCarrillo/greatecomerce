@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      
+      
+      <div class="form-group">     
+        <label for="key">Code: </label>&nbsp; 
+        <span *ngIf="category.colorBadge" [class]="'product-badge badge-pill category-status-' + category.colorBadge ">{{ category.key }}</span>
+        <span *ngIf="!category.colorBadge">{{ category.key }}</span>
+
+        <input type="text" #key="ngModel" [(ngModel)]="category.key" name="key" id="key" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="key.touched && key.invalid">The name of the category is requred.</div>
+      </div>
+      
+      <div class="form-group">        
+        <label for="description">Description</label>
+        <input type="text" #description="ngModel" [(ngModel)]="category.description" name="description" id="description" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="description.touched && description.invalid">The description of the category is requred.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="colorBadge">Color</label>
+        <select type="text" #colorBadge="ngModel" [(ngModel)]="category.colorBadge" name="colorBadge" id="colorBadge" class="form-control" required>
+          <option value=""></option>
+          <option *ngFor="let color of colors " [value]="color.colorBadge">
+            {{ color.colorBadge }}      
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="colorBadge.touched && colorBadge.invalid">La categoria del producto es requerida.</div>
+      </div>
+
+
+
+      <button [disabled]="!f.valid" class="btn btn-primary" type="submit">Save</button>
+      &nbsp;
+      <button *ngIf="categoryId!=='new'" class="btn btn-danger" type="button" (click)="delete()" >Delete</button>
+      &nbsp;
+      <a class="btn btn-secondary" type="button" [routerLink]="['/admin/categories']">Back</a>
+    </form>
+      
+  </div>
+
+  <div class="col-md-6">
+    <!-- <category-card [category]="category" [show-actions]="false"></category-card> -->
+  </div>
+
+</div>

@@ -13,3 +13,33 @@ th.total{
   text-align: right;
   padding-right:30px;
 } 
+
+.category-status-green {
+  background-color: #C8E6C9;
+  color: #256029;
+}
+
+.category-status-red {
+  background-color: #FFCDD2;
+  color: #C63737;
+}
+
+.category-status-brown {
+  background-color: #FEEDAF;
+  color: #8A5340;
+}
+
+.category-status-blue {
+  background-color: #B3E5FC;
+  color: #23547B;
+}
+
+.category-status-purple {
+  background-color: #ECCFFF;
+  color: #694382;
+}
+
+.category-status-brown2 {
+  background-color: #FFD8B2;
+  color: #805B36;
+}

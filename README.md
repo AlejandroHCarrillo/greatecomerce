@@ -67,10 +67,15 @@ also remember to update your angular.json file:
 ## Instalar font Awesome
 XXX npm install font-awesome --save
 
+## Instalar font Awesome for Angular
+
+https://www.angularjswiki.com/angular/how-to-use-font-awesome-icons-in-angular-applications/#global-level-configuration
+
 https://www.npmjs.com/package/@fortawesome/angular-fontawesome
 npm i @fortawesome/angular-fontawesome
 
 ng add @fortawesome/angular-fontawesome[@6.14.5]
+
 
 ## Autentificacion 
 

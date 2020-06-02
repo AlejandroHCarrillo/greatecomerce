@@ -6,12 +6,16 @@ import { ProductFormComponent } from 'admin/components/product-form/product-form
 import { AdminAuthGuard } from 'admin/services/guards/admin-auth.guard';
 import { SharedModule } from 'shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
+import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
+import { CategoryFormComponent } from './components/admin-categories/category-form.component';
 
 @NgModule({
   declarations: [
     AdminProductsComponent,
     AdminOrdersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    AdminCategoriesComponent,
+    CategoryFormComponent
   ],
   imports: [
     CommonModule,

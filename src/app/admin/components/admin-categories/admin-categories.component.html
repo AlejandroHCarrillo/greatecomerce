@@ -1,0 +1,26 @@
+<p style="text-align:right; padding-top: .625rem;">
+  <a [routerLink]="['/admin/categories/new']" class="btn btn-primary">Add Category</a>
+</p>
+
+<!-- tabla de bootstrap -->
+<table  class="table table-striped table-hover table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th>Category</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of categories$ | async">
+      <td>
+        <span *ngIf="item.colorBadge" [class]="'product-badge badge-pill category-status-' + item.colorBadge ">{{ item.key }}</span>
+        <span *ngIf="!item.colorBadge">{{ item.key }}</span>
+      </td>
+      <td>{{ item.description }}</td>
+      <td><a class="btn btn-warning" [routerLink]="['/admin/categories/', item.key]" >Edit</a></td>
+      <td><button class="btn btn-danger" (click)="delete(item.key)" >Delete</button></td>
+    </tr>
+  </tbody>
+</table>
