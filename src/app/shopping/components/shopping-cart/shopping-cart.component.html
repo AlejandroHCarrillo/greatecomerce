@@ -1,12 +1,11 @@
 <h1>Shopping cart</h1>
 <div class="row col-10" *ngIf="cart$ | async as cart">
-  <p>
-    You have {{ cart.totalItemsCount }} items in your shopping cart.
+  <div style="display: flex; justify-content: space-between; width: 100%;">
+    <div>You have {{ cart.totalItemsCount }} items in your shopping cart.</div>
     <button *ngIf="cart.items.length"
     (click)="clearCart()" 
-    class="btn btn-light btn-sm">Clear Shopping Cart</button>
-
-  </p>
+    class="btn btn-light btn-sm float-right">Clear Shopping Cart</button>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -15,6 +14,7 @@
         <th class="text-center">Quantity</th>
         <th class="text-center">Unit price</th>
         <th class="text-center">Total</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -22,16 +22,19 @@
         <td>
             <div *ngIf="item.imageUrl" [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="thumbnail"></div>
         </td>
-        <td>{{ item.title }}
-          <button (click)="removeProduct(item)" 
-          data-toggle="tooltip" data-placement="top" title="Delete {{ item.title }}"
-          class="btn btn-light btn-sm float-right">x</button>  
-        </td>
+        <td>{{ item.title }}</td>
         <td>
           <product-quantity [product]="item" [shopping-cart]="cart"></product-quantity>
         </td>
         <td class="currency">{{ item.price  | currency:'USD':'symbol' }}</td>
         <td class="currency">{{ item.totalPrice | currency:'USD':'symbol' }}</td>
+        <td>
+          <button (click)="removeProduct(item)" 
+          data-toggle="tooltip" data-placement="top" title="Delete {{ item.title }}"
+          class="btn btn-light btn-sm float-right">
+          <i class="fas fa-times"></i>
+          Delete</button>
+        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -41,12 +44,16 @@
         <th></th>
         <th class="total">Total:</th>
         <th class="total">{{ cart.totalPrice  | currency:'USD':'symbol' }}</th>
+        <th></th>
       </tr>
     </tfoot>
   </table>
 
   <a *ngIf="cart.items.length"
-     [routerLink]="['/check-out']" 
-     class="btn btn-primary">Check out</a>
+    [routerLink]="['/check-out']" 
+    class="btn btn-primary">
+    <i class="fas fa-donate"></i>
+    Check out
+  </a>
 
 </div>

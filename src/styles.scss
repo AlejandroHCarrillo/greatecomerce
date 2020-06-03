@@ -1,16 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
  /* @import "~font-awesome/css/font-awesome.css"  */
  $primary-color: rgb(98, 204, 12);
- $primary-color-hover: rgb(195, 241, 169);
+ $primary-color-hover: rgb(94, 255, 0);
 
-.container{ padding-top: 10px; }
+.container{ 
+  width:100%;
+  padding-top: 10px; 
+  margin-left: 0;
+  padding-right: .1rem;
+  margin-right: .1rem;
+}
 
 .brand-primary{
   color: $primary-color;
 }
 
-.brand-primary:hover{
+.nav-item:hover .nav-link .menu-text{
   color: $primary-color-hover;
+}
+
+.menu-text{
+  padding-left: 5px;
+  padding-right: 15px;
+}
+
+.nav-item:hover .brand-primary { 
+  color: $primary-color-hover; 
 }
 
 .list-group-item.active{
@@ -18,9 +33,14 @@
   border-color: $primary-color;
 }
 
+.card{
+  min-width: 210px;
+}
+
 .menu{
   font-size: .9rem;
   margin: 0;
+  width: 100%;
   min-width: 100px;
 }
 
@@ -33,6 +53,10 @@ th.total{
   text-align: right;
   padding-right:30px;
 } 
+
+.icon-center{
+  min-width: 40px;
+}
 
 .category-status-green {
   background-color: #C8E6C9;
@@ -62,4 +86,35 @@ th.total{
 .category-status-brown2 {
   background-color: #FFD8B2;
   color: #805B36;
+}
+
+@media (min-width: 581px), (max-width: 650px) {
+  .container, .container-md, .container-sm {
+    max-width: 100%;
+  }
+  .item-card{
+    padding-left: 1rem;
+    min-width: 200px;
+    max-width: 210px;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 650px){
+  .body{
+    min-width: 540px;
+  }
+
+  .container, .container-md, .container-sm {
+    max-width: 100%;
+  }
+
+  .item-card{
+    padding-left: 1rem;
+    margin-left: 1.2rem;
+    min-width: 200px;
+    max-width: 100%;
+    margin-right: 1rem;
+  }
+  
 }

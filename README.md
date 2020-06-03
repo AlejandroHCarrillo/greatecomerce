@@ -81,8 +81,14 @@ ng add @fortawesome/angular-fontawesome[@6.14.5]
 
 https://angular-templates.io/tutorials/about/firebase-authentication-with-angular
 
+
+## Autentificacion con twitter
+https://developer.twitter.com/en/docs/basics/authentication/guides/log-in-with-twitter
+
+
 ## Manejo de listas en firebase
 https://github.com/angular/angularfire/blob/master/docs/rtdb/lists.md
+
 
 ## Querys y ordenamientos
 

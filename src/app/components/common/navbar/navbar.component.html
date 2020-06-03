@@ -14,15 +14,14 @@
 
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >
-            <i class="fas fa-home brand-primary"></i>
-            Home 
-          <span class="sr-only">(current)</span></a>
+            <i class="fas fa-home brand-primary"></i>             
+            <span class="menu-text">Home</span></a>
         </li>
 
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/products']">
             <i class="fas fa-gift brand-primary"></i>
-            Productos
+            <span class="menu-text">Products</span>
           </a>
         </li>
 
@@ -30,7 +29,7 @@
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">              
             <i class="fas fa-sign-in-alt brand-primary"></i>
-              Log in
+            <span class="menu-text">Log in</span>
             </a>
           </li>
         </ng-template>
@@ -64,14 +63,16 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" (click)="logout()">
               <i class="fas fa-door-open brand-primary"></i>
-              Log out</a>
+              <span class="menu-text">Log out</span>
+            </a>
             </div>
           </li>
         
         <li *ngIf="appUser" class="nav-item" routerLinkActive="active">
           <a class="nav-link" (click)="logout()" >
             <i class="fas fa-door-open brand-primary"></i>
-            Log out</a>
+            <span class="menu-text">Log out</span>
+          </a>
         </li>
 
         <li class="nav-item float-right" routerLinkActive="active">

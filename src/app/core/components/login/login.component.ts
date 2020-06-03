@@ -35,6 +35,12 @@ export class LoginComponent {
     this._authService.login("google");
   }
 
+  doTwitterLogin(){
+    console.log("login component twitter login");
+    this._authService.login("twitter");
+  }
+
+
   logout(){
     this._authService.logout();
   }
