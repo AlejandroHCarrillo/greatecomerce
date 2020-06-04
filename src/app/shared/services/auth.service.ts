@@ -31,7 +31,32 @@ export class AuthService {
         this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());        
         break;
       case 'twitter':
-          this.afAuth.signInWithPopup(new firebase.auth.TwitterAuthProvider());        
+          console.log("sending authentication request");
+          firebase.auth().getRedirectResult()
+                  .then(function(result) {
+                    console.log("esto trajo", result);
+                    if (result.credential) {
+                      
+                      // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+                      // You can use these server side with your app's credentials to access the Twitter API.
+                      var token = (result as any).credential.accessToken;
+                      var secret = (result as any).credential.secret;
+                      // ...
+                    }
+                    // The signed-in user info.
+                    var user = result.user;
+                  }).catch(function(error) {
+                    console.log("hubo error: ", error);
+                    
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // ...
+                  });
           break;      
       default:
         console.log('Autenticador desconocido');

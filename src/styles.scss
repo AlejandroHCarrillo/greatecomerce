@@ -88,7 +88,7 @@ th.total{
   color: #805B36;
 }
 
-@media (min-width: 581px), (max-width: 650px) {
+@media (min-width: 581px) and (max-width: 650px) {
   .container, .container-md, .container-sm {
     max-width: 100%;
   }

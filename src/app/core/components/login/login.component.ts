@@ -36,7 +36,7 @@ export class LoginComponent {
   }
 
   doTwitterLogin(){
-    console.log("login component twitter login");
+    console.log("twitter login");
     this._authService.login("twitter");
   }
 

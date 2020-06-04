@@ -69,17 +69,45 @@ XXX npm install font-awesome --save
 
 ## Instalar font Awesome for Angular
 
-https://www.angularjswiki.com/angular/how-to-use-font-awesome-icons-in-angular-applications/#global-level-configuration
 
 https://www.npmjs.com/package/@fortawesome/angular-fontawesome
 npm i @fortawesome/angular-fontawesome
 
 ng add @fortawesome/angular-fontawesome[@6.14.5]
 
+## How To Use Font Awesome icons in Angular Applications
+https://www.angularjswiki.com/angular/how-to-use-font-awesome-icons-in-angular-applications/#global-level-configuration
+
+## FontAwesome Icons in Angular 6?
+https://stackoverflow.com/questions/52006605/fontawesome-icons-in-angular-6
 
 ## Autentificacion 
 
 https://angular-templates.io/tutorials/about/firebase-authentication-with-angular
+
+
+## twitter
+
+El secreto para loguearse con twitter es: 
+* Primero crear la cuenta developer en twitter
+https://developer.twitter.com/en
+* Crear una aplicacion en la cuenta de twitter
+https://developer.twitter.com/en/apps
+https://developer.twitter.com/en/apps/create
+
+* Al crear la cuenta es muy importante definir el callbak como sigue: 
+  https://greatecomerce.firebaseapp.com/__/auth/handler
+* Copiar el **API Key** y el **API secret Key**   
+* **En Firebase** habilitar la autentificacion por twitter
+* Pegar el **API Key** y el **API secret Key** copiados anteriormente
+* En esta pantalla, nos muestra que el call back debe ser: 
+  https://greatecomerce.firebaseapp.com/__/auth/handler
+  solo hay que cortarlo y pegarlo. cuando estemos creando o editando la cuenta app de twitter.
+
+
+https://stackoverflow.com/questions/51103139/callback-url-not-approved-by-twitter
+
+
 
 
 ## Autentificacion con twitter
