@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
-import { Usuario } from '../models/usuario.model';
+import { User } from '../models/user.model';
 import { UserService } from './user.service';
 
 
@@ -34,9 +34,8 @@ export class AuthService {
           console.log("sending authentication request");
           firebase.auth().getRedirectResult()
                   .then(function(result) {
-                    console.log("esto trajo", result);
-                    if (result.credential) {
-                      
+                    // console.log("result", result);
+                    if (result.credential) {                      
                       // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
                       // You can use these server side with your app's credentials to access the Twitter API.
                       var token = (result as any).credential.accessToken;
@@ -46,8 +45,6 @@ export class AuthService {
                     // The signed-in user info.
                     var user = result.user;
                   }).catch(function(error) {
-                    console.log("hubo error: ", error);
-                    
                     // Handle Errors here.
                     var errorCode = error.code;
                     var errorMessage = error.message;
@@ -73,7 +70,7 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  get appUser$(): Observable<Usuario>{
+  get appUser$(): Observable<User>{
     return this.user$ 
     .pipe( 
         switchMap((fireUser) =>  {

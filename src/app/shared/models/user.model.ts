@@ -1,4 +1,4 @@
-export class Usuario {
+export class User {
   
   public displayName: string;
   public uid?: string;
@@ -8,13 +8,7 @@ export class Usuario {
   
   public isAdmin?: boolean;
   public role?: string;
-  // public nombre: string;
-  // // public usuario?: string
-  // public clave?: string;     
-  
-  // public fechaAlta?: Date;
-  // public fechaActualizacion?: Date;
-  
+    
   constructor(
 
     ) { }

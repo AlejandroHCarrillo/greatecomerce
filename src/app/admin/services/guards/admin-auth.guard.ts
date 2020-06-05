@@ -4,7 +4,7 @@ import { Observable, of, observable } from 'rxjs';
 import { AuthService } from 'shared/services/auth.service';
 import { map, switchMap } from 'rxjs/operators';
 import { UserService } from 'shared/services/user.service';
-import { Usuario } from 'shared/models/usuario.model';
+import { User } from 'shared/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,7 @@ export class AdminAuthGuard implements CanActivate {
   // El parametro id depende del usuario auth.user$ que es otro observable.
   // Para disparar getUser en cuanto tengamos el resultado de auth.user$ usamos switchMap 
   // Esta funcion solo convierte el AngularFireObject<Usuario> a un observable usando el valueChanges 
-  getUser (id: string ) : Observable<Usuario> {
+  getUser (id: string ) : Observable<User> {
     return this.userService.get(id).valueChanges();
   }
   

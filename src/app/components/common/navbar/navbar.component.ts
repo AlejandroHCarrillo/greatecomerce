@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'shared/services/auth.service';
 import { Router } from '@angular/router';
-import { Usuario } from 'shared/models/usuario.model';
+import { User } from 'shared/models/user.model';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/shopping-cart.model';
 import { Observable } from 'rxjs';
@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit  {
   // faSignIn = faSignInAlt;
   // faUser = faUser;
 
-  appUser: Usuario;
+  appUser: User;
   cart$: Observable<ShoppingCart>;
 
   constructor(private router: Router,
