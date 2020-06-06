@@ -1,14 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
  /* @import "~font-awesome/css/font-awesome.css"  */
+//  @import "assets/styles/table-style.scss";
+
  $primary-color: rgb(98, 204, 12);
  $primary-color-hover: rgb(94, 255, 0);
 
-.container{ 
+ .container{ 
   width:100%;
   padding-top: 10px; 
+
+  // margin-right: 0;
+  // margin-left: 0;
+  // padding-right: .1rem;
+  // margin-right: .1rem;
+}
+
+.grid-container{ 
+  width:100%;
+  padding-top: 10px; 
+
   margin-left: 0;
-  padding-right: .1rem;
-  margin-right: .1rem;
+  // margin-right: 0;
+  // padding-right: .1rem;
+  // margin-right: .1rem;
 }
 
 .brand-primary{
@@ -86,35 +100,4 @@ th.total{
 .category-status-brown2 {
   background-color: #FFD8B2;
   color: #805B36;
-}
-
-@media (min-width: 581px) and (max-width: 650px) {
-  .container, .container-md, .container-sm {
-    max-width: 100%;
-  }
-  .item-card{
-    padding-left: 1rem;
-    min-width: 200px;
-    max-width: 210px;
-    margin-right: 1rem;
-  }
-}
-
-@media (max-width: 650px){
-  .body{
-    min-width: 540px;
-  }
-
-  .container, .container-md, .container-sm {
-    max-width: 100%;
-  }
-
-  .item-card{
-    padding-left: 1rem;
-    margin-left: 1.2rem;
-    min-width: 200px;
-    max-width: 100%;
-    margin-right: 1rem;
-  }
-  
 }

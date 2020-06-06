@@ -8,7 +8,8 @@ import { TableModule, Table } from 'primeng/table';
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
-  styleUrls: [ './admin-products.component.scss' ]
+  styleUrls: [ './admin-products.component.scss',
+               '../../../../assets/styles/table-style.scss' ]
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];

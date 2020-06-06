@@ -8,7 +8,9 @@ import { TableModule, Table } from 'primeng/table';
 @Component({
   selector: 'app-admin-users',
   templateUrl: './admin-users.component.html',
-  styleUrls: [ './admin-users.component.scss' ]
+  styleUrls: [ '../../../../assets/styles/table-style.scss',
+               './admin-users.component.scss' ]
+
 })
 export class AdminUsersComponent implements OnInit, OnDestroy {
   users: User[] = [];
@@ -37,10 +39,10 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
 
   getUsers(){
     this.subcription = this.userService.getAll()
-                                       .subscribe( data => {
-                                         console.log(data);                                          
-                                         this.filteredUsers =  this.users = data 
-                                        });
+                            .subscribe( data => {
+                              // console.log(data);                                          
+                              this.filteredUsers =  this.users = data;
+                            });
   }
 
   delete(userId:string){
@@ -50,7 +52,7 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
   }
 
   filter(query: string){
-    console.log(query);
+    // console.log(query);
     this.filteredUsers = (query) ? 
                             this.users.filter(p => p.displayName.toLowerCase().includes(query.toLowerCase()) ) :
                             this.users;

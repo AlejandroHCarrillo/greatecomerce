@@ -10,7 +10,7 @@
 <p-table #dt [value]="filteredUsers" *ngIf="filteredUsers"
         [(selection)]="selectedUsers" 
         dataKey="uid" 
-        styleClass="ui-table-users" 
+        styleClass="ui-table" 
         [rowHover]="true"
         [rows]="pagesize" 
         [showCurrentPageReport]="true" 
@@ -21,7 +21,7 @@
         [globalFilterFields]="['displayName','email','role']"
         >
 <ng-template pTemplate="caption"> List of Users
-  <div class="ui-table-globalfilter-container">
+  <div class="ui-table-global-filter-container">
       <input pInputText type="text" 
             (input)="dt.filterGlobal($event.target.value, 'contains')" 
              placeholder="Global Search" />
@@ -48,7 +48,7 @@
           <input pInputText type="text" (input)="dt.filter($event.target.value, 'email', 'startsWith')" placeholder="" class="ui-column-filter">
         </th>
         <th>
-          <input pInputText type="number" (input)="dt.filter($event.target.value, 'role', 'startsWith')" placeholder="" class="ui-column-filter">
+          <input pInputText type="text" (input)="dt.filter($event.target.value, 'role', 'startsWith')" placeholder="" class="ui-column-filter">
         </th>
         <th></th>
       </tr>
@@ -59,20 +59,20 @@
         <td>
           <p-tableCheckbox [value]="item"></p-tableCheckbox>
         </td>
-        <td class="ui-cell-image">
-          <span class="ui-column-displayName">Image:</span>      
+        <td>
+          <span class="ui-column-title">Image:</span>      
           <img *ngIf="item.photoURL" [src]="item.photoURL"  style="height: 30px; width: auto;" [alt]="item.displayName">
         </td>
         <td>
-          <span class="ui-column-displayName">Name:</span>      
+          <span class="ui-column-title">Name:</span>      
           {{ item.displayName }}</td>
         <td>
-          <span class="ui-column-displayName">Email:</span>
+          <span class="ui-column-title">Email:</span>
           <span [class]="'user-badge status-' + item.email">{{item.email}}</span>
         </td>
         <td class="ui-column-role">
-          <span class="ui-column-displayName">Role:</span>
-          {{ item.role | currency:"USD": "symbol" }}
+          <span class="ui-column-title">Role:</span>
+          {{ item.role }}
         </td>
         <td class="controls-right">
           <a class="btn btn-warning btn-sm" [routerLink]="['/admin/users/', item.key]" >Edit</a>

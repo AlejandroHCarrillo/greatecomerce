@@ -1,4 +1,6 @@
-export class User {
+import { Base } from './base.model';
+
+export class User extends Base {
   
   public displayName: string;
   public uid?: string;
@@ -9,7 +11,7 @@ export class User {
   public isAdmin?: boolean;
   public role?: string;
     
-  constructor(
-
-    ) { }
+  constructor( creationUserId:string ) {
+    super(creationUserId);
+  }
 }

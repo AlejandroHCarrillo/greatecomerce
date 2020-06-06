@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { Observable, of, observable } from 'rxjs';
 import { AuthService } from 'shared/services/auth.service';
 import { map, switchMap } from 'rxjs/operators';
@@ -12,13 +12,11 @@ import { User } from 'shared/models/user.model';
 export class AdminAuthGuard implements CanActivate {
 
   constructor(private auth: AuthService,
-              private userService: UserService,
-              private router: Router){
+              private userService: UserService){
 
   }
 
-  canActivate( next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean>  {
+  canActivate( ): Observable<boolean>  {
       // Ejemplo de como encadenar la ejecucion de 2 observables encadenados
       // uno despues de otro usando switchMap usando los resultados del primero
       return this.auth.user$ // user$ Es el primer observable que queremos ejecutar
@@ -31,7 +29,7 @@ export class AdminAuthGuard implements CanActivate {
       ).pipe(
         // En este pipe el usuario transfoma la salida y solo se envia el campo isAdmin 
         // del usuario recibido de la base de datos
-        map(userDB => userDB.isAdmin )
+        map(userDB => userDB.role === "admin" )
       );
       // .subscribe( res => console.log(res) );
   }

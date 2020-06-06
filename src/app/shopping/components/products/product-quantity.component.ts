@@ -5,8 +5,7 @@ import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 @Component({
   selector: 'product-quantity',
   templateUrl: './product-quantity.component.html',
-  styles: [
-  ]
+  styleUrls: [ './product-quantity.component.scss' ]
 })
 export class ProductQuantityComponent {
 

@@ -1,19 +1,32 @@
+import { Injectable, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import { User } from '../models/user.model';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService implements OnInit {
+  loggedUserId: string;
+  user$: Observable<firebase.User>;
 
-  constructor(private db:AngularFireDatabase) { }
+  constructor(public afAuth: AngularFireAuth, 
+              private db:AngularFireDatabase) 
+  {
+  }
+  ngOnInit() {
+    this.getIdUserLogged
+        .subscribe( id => {
+          this.loggedUserId = id ;
+        }); 
+  }
 
   save(user: firebase.User){
-
-    let usuario = new User();
+    let usuario = new User(this.loggedUserId);
 
     usuario.uid = user.uid;
     usuario.displayName = user.displayName;
@@ -42,16 +55,31 @@ export class UserService {
   }
 
   create(user:User){
-    // console.log('Guardando el usero');
+    // console.log('Guardando el usuario');
     return this.db.list('/users/').push( user );
   }
 
   update(userId:string, user:User){
-    console.log('Actualizando el usero', user);
+    // console.log('Actualizando el usuario', user);
     return this.db.object('/users/' + userId).update( user );
   }
 
   delete(uid:string){
     return this.db.object('/users/' + uid).remove();
+  }
+
+  // Roles section
+  getAllroles(){
+    return this.db.object('/roles/').snapshotChanges()
+                  .pipe(
+                    map(item => ({ ...(item.payload.val() as any) }))                    
+                  );
+  }
+
+  get getIdUserLogged(){
+    return this.afAuth.authState
+    .pipe(
+      map( user => { return (user as any ).uid } )
+    );
   }
 }
