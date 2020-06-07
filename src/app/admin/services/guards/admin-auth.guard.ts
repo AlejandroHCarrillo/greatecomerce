@@ -27,7 +27,7 @@ export class AdminAuthGuard implements CanActivate {
         // por eso podemos acceder al uid y mandarlo al segundo observable
           switchMap((fireUser) =>  this.getUser(fireUser.uid) ) 
       ).pipe(
-        // En este pipe el usuario transfoma la salida y solo se envia el campo isAdmin 
+        // En este pipe el usuario transfoma la salida y solo se envia el true cuando campo role es admin 
         // del usuario recibido de la base de datos
         map(userDB => userDB.role === "admin" )
       );

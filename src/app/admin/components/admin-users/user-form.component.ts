@@ -35,9 +35,6 @@ export class UserFormComponent implements OnInit {
                                 key: item.payload.key, ...(item.payload.val() as User) 
                               }) )
                           ).subscribe(data => {
-                            if(!data.role) data.role = "guest"; 
-                            if(data.isAdmin) data.role = "admin"; 
-
                             this.user = data;
                           });
     }

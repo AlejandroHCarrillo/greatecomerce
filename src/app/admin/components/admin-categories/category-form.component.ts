@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'shared/models/category.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'shared/services/category.service';
+import { UserService } from 'shared/services/user.service';
 
 @Component({
   selector: 'app-category-form',
@@ -9,6 +10,8 @@ import { CategoryService } from 'shared/services/category.service';
   styleUrls: ['./category-form.component.css']
 })
 export class CategoryFormComponent implements OnInit {
+  loggedUserId : string = "";
+  
   colors= [
     {colorBadge: "green"},
     {colorBadge: "red"},
@@ -23,7 +26,8 @@ export class CategoryFormComponent implements OnInit {
 
   constructor( private router: Router,
                private route: ActivatedRoute,
-               private categoryService: CategoryService
+               private categoryService: CategoryService,
+               private userService: UserService
     ) {
     this.categoryId = this.route.snapshot.paramMap.get('id');
 
@@ -40,17 +44,22 @@ export class CategoryFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.userService.getIdUserLogged
+    .subscribe(id => {
+     //  console.log("userId: ", id);
+      this.loggedUserId = id;
+     } );
   }
 
   save(category: Category){
     if(this.categoryId == "new") {
-      console.log('saving form: ', category);
-      category.userCreate = "Jhon doe";
+      // console.log('saving form: ', category);
+      category.userCreate = this.loggedUserId;;
       category.creationDate = new Date().getTime();
       // this.categoryService.create(category);
     } else {
       console.log('Actualizando', category);
-      category.userUpdate = "Jhon doe";
+      category.userUpdate = this.loggedUserId;
       category.updateDate = new Date().getTime();
       // this.categoryService.update(this.categoryId, category);      
     }

@@ -25,12 +25,12 @@
           </a>
         </li>
 
-        <li class="nav-item" routerLinkActive="active">
+        <!-- <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/admin/users']">
             <i class="fas fa-users brand-primary"></i>
             <span class="menu-text">Admin users</span>
           </a>
-        </li>
+        </li> -->
 
         <ng-template #anonymusUser>
           <li class="nav-item" routerLinkActive="active">
@@ -55,11 +55,23 @@
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLink]="['/my/orders']" routerLinkActive="active" >My orders</a>
             
-            <ng-container *ngIf="appUser.isAdmin" >
+            <ng-container *ngIf="appUser.role == 'admin'" >
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" [routerLink]="['/admin/orders']" routerLinkActive="active" >Manage Orders</a>
-              <a class="dropdown-item" [routerLink]="['/admin/products']" routerLinkActive="active" >Manage Products</a>
+              <a class="dropdown-item" [routerLink]="['/admin/orders']" routerLinkActive="active" >
+                <i class="far fa-list-alt brand-primary"></i>
+                Manage Orders
+              </a>
+              <a class="dropdown-item" [routerLink]="['/admin/products']" routerLinkActive="active" >
+                <i class="fas fa-boxes brand-primary"></i>
+                Manage Products
+              </a>
               
+              <a class="dropdown-item" [routerLink]="['/admin/users']" routerLinkActive="active">
+                  <i class="fas fa-users brand-primary"></i>
+                  <span class="menu-text">Admin users</span>
+                </a>
+      
+
               <a class="dropdown-item" [routerLink]="['/admin/categories']" routerLinkActive="active">
                 <i class="fas fa-grip-horizontal brand-primary"></i>
                 Manage Categories

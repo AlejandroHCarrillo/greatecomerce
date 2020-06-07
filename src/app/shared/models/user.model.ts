@@ -8,7 +8,6 @@ export class User extends Base {
   public email?: string;
   public photoURL?: string;
   
-  public isAdmin?: boolean;
   public role?: string;
     
   constructor( creationUserId:string ) {
