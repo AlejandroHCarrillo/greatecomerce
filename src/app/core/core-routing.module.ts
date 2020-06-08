@@ -7,6 +7,8 @@ import { RegisterComponent } from 'core/components/register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
+  { path: 'home/:carrouselcontrols', component: HomeComponent},
+  { path: 'home/slider', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];
