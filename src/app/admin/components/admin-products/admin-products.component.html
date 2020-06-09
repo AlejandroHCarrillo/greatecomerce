@@ -1,59 +1,61 @@
-<p style="text-align:right; padding-top: .625rem;">
-  <a [routerLink]="['/admin/products/new']" class="btn btn-primary">Nuevo producto</a>
-</p>
-<p>
-  <input type="text" class="form-control" placeholder="Buscar..."
-         #query (keyup)="filter(query.value)">
-</p>
+<div class="container">
 
-<!-- [rowsPerPageOptions]="[5,10,25,50]"  -->
-<p-table #dt [value]="filteredProducts" *ngIf="filteredProducts"
-        [(selection)]="selectedProducts" 
-        dataKey="uid" 
-        styleClass="ui-table" 
-        [rowHover]="true"
-        [rows]="pagesize" 
-        [showCurrentPageReport]="true" 
-        [loading]="loading"
-        [paginator]="true" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [filterDelay]="0" 
-        [rowsPerPageOptions]="[5,10,25,50]"
-        [globalFilterFields]="['title','category','price']"
-        >
-<ng-template pTemplate="caption"> List of Products
-  <div class="ui-table-global-filter-container">
+  <p style="text-align:right; padding-top: .625rem;">
+    <a [routerLink]="['/admin/products/new']" class="btn btn-primary">Nuevo producto</a>
+  </p>
+  <p>
+    <input type="text" class="form-control" placeholder="Buscar..."
+    #query (keyup)="filter(query.value)">
+  </p>
+  
+  <!-- [rowsPerPageOptions]="[5,10,25,50]"  -->
+  <p-table #dt [value]="filteredProducts" *ngIf="filteredProducts"
+  [(selection)]="selectedProducts" 
+  dataKey="uid" 
+  styleClass="ui-table" 
+  [rowHover]="true"
+  [rows]="pagesize" 
+  [showCurrentPageReport]="true" 
+  [loading]="loading"
+  [paginator]="true" 
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [filterDelay]="0" 
+  [rowsPerPageOptions]="[5,10,25,50]"
+  [globalFilterFields]="['title','category','price']"
+  >
+  <ng-template pTemplate="caption"> List of Products
+    <div class="ui-table-global-filter-container">
       <input pInputText type="text" 
-            (input)="dt.filterGlobal($event.target.value, 'contains')" 
-             placeholder="Global Search" />
-  </div>
-</ng-template>
-
+      (input)="dt.filterGlobal($event.target.value, 'contains')" 
+      placeholder="Global Search" />
+    </div>
+  </ng-template>
+  
   <ng-template pTemplate="header">
-      <tr>
-        <th></th>
-        <th >Img</th>
-        <th pSortableColumn="title">Title<p-sortIcon field="title"></p-sortIcon></th>
-        <th pSortableColumn="category">Category<p-sortIcon field="category"></p-sortIcon></th>
-        <th pSortableColumn="price">Price<p-sortIcon field="price"></p-sortIcon></th>
-        <th></th>
-      </tr>
-
-      <tr>
-        <th><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
-        <th></th>
-        <th>
-          <input pInputText type="text" (input)="dt.filter($event.target.value, 'title', 'startsWith')" placeholder="" class="ui-column-filter">
-        </th>
-        <th>
-          <input pInputText type="text" (input)="dt.filter($event.target.value, 'category', 'startsWith')" placeholder="" class="ui-column-filter">
-        </th>
+    <tr>
+      <th></th>
+      <th >Img</th>
+      <th pSortableColumn="title">Title<p-sortIcon field="title"></p-sortIcon></th>
+      <th pSortableColumn="category">Category<p-sortIcon field="category"></p-sortIcon></th>
+      <th pSortableColumn="price">Price<p-sortIcon field="price"></p-sortIcon></th>
+      <th></th>
+    </tr>
+    
+    <tr>
+      <th><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+      <th></th>
+      <th>
+        <input pInputText type="text" (input)="dt.filter($event.target.value, 'title', 'startsWith')" placeholder="" class="ui-column-filter">
+      </th>
+      <th>
+        <input pInputText type="text" (input)="dt.filter($event.target.value, 'category', 'startsWith')" placeholder="" class="ui-column-filter">
+      </th>
         <th>
           <input pInputText type="number" (input)="dt.filter($event.target.value, 'price', 'startsWith')" placeholder="" class="ui-column-filter">
         </th>
         <th></th>
       </tr>
-
+      
   </ng-template>
   <ng-template pTemplate="body" let-item>
     <tr >
@@ -67,8 +69,8 @@
         <td>
           <span class="ui-column-title">Name:</span>      
           {{ item.title }}</td>
-        <td>
-          <span class="ui-column-title">Category:</span>
+          <td>
+            <span class="ui-column-title">Category:</span>
           <span [class]="'product-badge status-' + item.category">{{item.category}}</span>
         </td>
         <td class="ui-column-price">
@@ -79,30 +81,30 @@
           <a class="btn btn-warning btn-sm" [routerLink]="['/admin/products/', item.key]" >Edit</a>
           &nbsp;
           <button class="btn btn-danger btn-sm" (click)="delete(item.key)" >Del</button></td>  
-      </tr>
-  </ng-template>
+        </tr>
+      </ng-template>
   <ng-template pTemplate="summary">
     There are {{ filteredProducts?.length }} products
   </ng-template>
   
   <ng-template pTemplate="emptymessage">
     <tr>
-        <td colspan="6" style="text-align:center">
-          <div class="alert alert-warning" role="alert">
+      <td colspan="6" style="text-align:center">
+        <div class="alert alert-warning" role="alert">
             No products found.
           </div>
         </td>
-    </tr>
-  </ng-template>
+      </tr>
+    </ng-template>
   
-</p-table>
+  </p-table>
 
-
-<!-- tabla de bootstrap -->
-<!-- <table  class="table table-striped table-hover  table-sm">
-  <thead class="thead-dark">
-    <tr>
-      <th>Img</th>
+  
+  <!-- tabla de bootstrap -->
+  <!-- <table  class="table table-striped table-hover  table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th>Img</th>
       <th>Title</th>
       <th>Category</th>
       <th>Price</th>
@@ -123,3 +125,5 @@
     </tr>
   </tbody>
 </table> -->
+</div>
+

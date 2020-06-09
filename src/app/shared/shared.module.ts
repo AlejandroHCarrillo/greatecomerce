@@ -16,11 +16,13 @@ import { TableModule } from 'primeng/table';
 
 import { ProductCardComponent } from 'shopping/components/products/product-card.component';
 import { ProductQuantityComponent } from 'shopping/components/products/product-quantity.component';
+import { FooterComponent } from 'shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [ 
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { ProductQuantityComponent } from 'shopping/components/products/product-q
     AngularFireDatabaseModule,
 
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    FooterComponent
   ],
   providers: [
     AuthService,

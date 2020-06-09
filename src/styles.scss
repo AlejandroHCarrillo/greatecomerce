@@ -5,6 +5,9 @@
  $primary-color: rgb(98, 204, 12);
  $primary-color-hover: rgb(94, 255, 0);
 
+//  $primary-color:  #ffdd59; //#3c40c6;
+//  $primary-color-hover:#ffd32a;// #575fcf;
+
  body{
   min-width: 250px;        /* Suppose you want minimum width of 1000px */
   width: auto !important;  /* Firefox will set width as auto */
@@ -13,14 +16,18 @@
 
 .container{ 
   width:100%;
-  padding-top: 10px; 
-
+  padding-top: 10px;
+  padding-left: 4rem;
 }
 
 .grid-container{ 
   width:100%;
   padding-top: 10px; 
-  margin-left: 0;
+  padding-left: 2rem;
+}
+
+.wide-container{
+  margin: 0;
 }
 
 .brand-primary{
@@ -53,7 +60,7 @@
   font-size: .9rem;
   margin: 0;
   width: 100%;
-  min-width: 100px;
+  min-width: 130px;
 }
 
 td.currency{
@@ -122,11 +129,11 @@ th.total{
   }
 
   .item-card{
-    padding-left: 1rem;
+    padding-left: 1.5rem;
     margin-left: 1.2rem;
-    min-width: 200px;
-    max-width: 100%;
-    margin-right: 1rem;
+    min-width: 75%;
+    max-width: 80%;
+    margin-right: .1rem;
   }
   
 }

@@ -6,6 +6,8 @@ import { RegisterComponent } from 'core/components/register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreRoutingModule } from 'core/core-routing.module';
 import { UserComponent } from 'core/components/user/user.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { LocationComponent } from './components/location/location.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { UserComponent } from 'core/components/user/user.component';
     LoginComponent,
     RegisterComponent,
     UserComponent,
+    ContactUsComponent,
+    LocationComponent,
   ],
   imports: [
     CommonModule,
