@@ -17,12 +17,14 @@ import { TableModule } from 'primeng/table';
 import { ProductCardComponent } from 'shopping/components/products/product-card.component';
 import { ProductQuantityComponent } from 'shopping/components/products/product-quantity.component';
 import { FooterComponent } from 'shared/components/footer/footer.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [ 
     ProductCardComponent,
     ProductQuantityComponent,
-    FooterComponent
+    FooterComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,9 @@ import { FooterComponent } from 'shared/components/footer/footer.component';
 
     ProductCardComponent,
     ProductQuantityComponent,
-    FooterComponent
+    FooterComponent,
+    CarouselComponent
+
   ],
   providers: [
     AuthService,

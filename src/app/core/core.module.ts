@@ -8,6 +8,7 @@ import { CoreRoutingModule } from 'core/core-routing.module';
 import { UserComponent } from 'core/components/user/user.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { LocationComponent } from './components/location/location.component';
+import { SharedModule } from 'shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LocationComponent } from './components/location/location.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     CoreRoutingModule,
   ],
   exports: [

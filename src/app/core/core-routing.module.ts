@@ -10,7 +10,6 @@ import { LocationComponent } from './components/location/location.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'home/:carrouselcontrols', component: HomeComponent},
-  { path: 'home/slider', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'contactus', component: ContactUsComponent },
   { path: 'location', component: LocationComponent },
