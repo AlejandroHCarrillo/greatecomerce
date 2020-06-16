@@ -7,10 +7,8 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="navbar-collapse collapse"
-      id="navbarNav">
+  <div class="navbar-collapse collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
-
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >
             <i class="fas fa-home brand-primary"></i>             
@@ -52,6 +50,12 @@
           </a>
   
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/my/profile']" routerLinkActive="active" >
+              <i class="far fa-address-card brand-primary"></i>
+              My profile
+            </a>
+
+            
             <a class="dropdown-item" [routerLink]="['/my/orders']" routerLinkActive="active" >
               <i class="far fa-calendar-check  brand-primary"></i>
               My orders

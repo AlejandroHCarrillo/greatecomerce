@@ -6,6 +6,7 @@ import { MyOrdersComponent } from 'shopping/components/my-orders/my-orders.compo
 import { OrderSuccessComponent } from 'shopping/components/order-success/order-success.component';
 import { ShoppingCartComponent } from 'shopping/components/shopping-cart/shopping-cart.component';
 import { ProductsComponent } from './components/products/products.component';
+import { UnderConstructionComponent } from 'shared/components/under-construction/under-construction.component';
 
 const routes: Routes = [
   { path: 'products', component: ProductsComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'check-out', component:CheckoutComponent, canActivate: [ AuthGuard ] },
   { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [ AuthGuard ] },
   { path: 'my/orders', component: MyOrdersComponent, canActivate: [ AuthGuard ] },
+  // { path: 'my/profile', component: UnderConstructionComponent },
 ];
 
 @NgModule({

@@ -18,19 +18,24 @@ import { ProductCardComponent } from 'shopping/components/products/product-card.
 import { ProductQuantityComponent } from 'shopping/components/products/product-quantity.component';
 import { FooterComponent } from 'shared/components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
+import { SharedRoutingModule } from './shared-routing.module';
 
 @NgModule({
   declarations: [ 
     ProductCardComponent,
     ProductQuantityComponent,
     FooterComponent,
-    CarouselComponent
+    CarouselComponent,
+    UnderConstructionComponent
   ],
   imports: [
     CommonModule,
     NgbModule,
     FormsModule,
     TableModule,
+
+    SharedRoutingModule,
 
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
@@ -47,6 +52,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 
     AngularFireDatabaseModule,
 
+    UnderConstructionComponent, 
     ProductCardComponent,
     ProductQuantityComponent,
     FooterComponent,

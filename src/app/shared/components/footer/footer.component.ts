@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+  copyright =  `${ new Date().getFullYear() } greatecomerce, Inc. All rights reserved.`
 
   constructor() { }
 

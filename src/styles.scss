@@ -2,8 +2,11 @@
  /* @import "~font-awesome/css/font-awesome.css"  */
 //  @import "assets/styles/table-style.scss";
 
- $primary-color: rgb(98, 204, 12);
- $primary-color-hover: rgb(94, 255, 0);
+// $primary-color: rgb(98, 204, 12);
+// $primary-color-hover: rgb(94, 255, 0);
+
+$primary-color: #ff5e57;//rgb(98, 204, 12);
+$primary-color-hover: #ff3f34;//rgb(94, 255, 0);
 
 //  $primary-color:  #ffdd59; //#3c40c6;
 //  $primary-color-hover:#ffd32a;// #575fcf;
@@ -39,6 +42,20 @@
 }
 
 .menu-text{
+  padding-left: 5px;
+  padding-right: 15px;
+}
+
+.nav-item:hover .brand-primary { 
+  color: $primary-color-hover; 
+}
+
+.nav-item:hover .nav-link .footer-link{
+  color: $primary-color-hover;
+}
+
+.footer-link{
+  color: gray;
   padding-left: 5px;
   padding-right: 15px;
 }

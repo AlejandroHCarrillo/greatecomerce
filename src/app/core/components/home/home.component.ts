@@ -4,7 +4,7 @@ import { carouselItem } from 'shared/models/carousel-item.model';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  styles: [   ]
+  styles: [ ` .container { margin-bottom: 3rem; }`  ]
 })
 export class HomeComponent implements OnInit {
 
