@@ -6,20 +6,26 @@ import { ShoppingCart } from 'shared/models/shopping-cart.model';
 @Component({
   selector: 'product-card',
   templateUrl: './product-card.component.html',
-  styles: [ `
-              .card-footer{ padding: 0; }
-              .card { margin-bottom: 1.875rem; }
-            `]
+  styleUrls: [ './product-card.component.scss' ]
 })
 export class ProductCardComponent  {
   @Input('product') product: Product;
   @Input('show-actions') showActions: boolean=true;
   @Input('shopping-cart') shoppingCart: ShoppingCart;
 
+  stars=['*','*','*','*','*'];
+  
   constructor(private cartService: ShoppingCartService) { }
   
   addToCart(){ 
     this.cartService.addToCart(this.product);
   }
 
+  toggleLike(){
+    this.product.like = !this.product.like;
+  }
+
+  setMyRank(rank: number){
+    this.product.rank = rank;
+  }
 }
