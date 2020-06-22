@@ -1,7 +1,7 @@
 <div class="card">
   <img *ngIf="product.imageUrl" [src]="product.imageUrl" class="card-img-top img-fluid" [alt]="product.title">
   <div class="like-rank" style="display: flex; justify-content: space-between;">    
-    <div>
+    <div *ngIf="showActions && shoppingCart" >
       <ng-container *ngFor="let star of stars; let i=index">
         <i class="fas fa-star rank" *ngIf="i+1<=product.rank" (click)="setMyRank(i+1)"></i>
         <i class="far fa-star rank" *ngIf="!product.rank || i+1>product.rank"(click)="setMyRank(i+1)"></i>

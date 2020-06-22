@@ -10,8 +10,8 @@
           No products found.
         </div>        
         <ng-container *ngFor="let item of filteredProducts; let i = index ">
-          <div class="col-md-1 item-card">
-            <product-card [product]="item" [shopping-cart]="cart"></product-card>
+          <div class="col-md-1 item-card" *ngIf="appUser">
+            <product-card [product]="item" [shopping-cart]="cart" [userId]="appUser.uid"></product-card>
           </div>
           <!-- <div *ngIf="(i+1) % 2 === 0" class="w-100"></div>   -->
         </ng-container>

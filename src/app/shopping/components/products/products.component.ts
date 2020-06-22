@@ -6,6 +6,8 @@ import { Product } from 'shared/models/product.model';
 import { ShoppingCart } from 'shared/models/shopping-cart.model';
 import { ProductService } from 'shared/services/product.service';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
+import { User } from 'shared/models/user.model';
+import { AuthService } from 'shared/services/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -13,20 +15,24 @@ import { ShoppingCartService } from 'shared/services/shopping-cart.service';
   styles: [ `  ` ]
 })
 export class ProductsComponent implements OnInit {
+  appUser: User;
   products : Product[] = [];
   filteredProducts: Product[] = [];
   categorySelected;
   cart$: Observable<ShoppingCart>;
 
   constructor(private route: ActivatedRoute,
+              private authService: AuthService,
               private productService: ProductService,
               private shoppingCartService: ShoppingCartService
               ) { 
 
   }
 
-  async ngOnInit() {    
-   this.cart$ = await this.shoppingCartService.getCart();
+  async ngOnInit() {
+    this.authService.appUser$.subscribe( fireUser => this.appUser = fireUser );
+
+    this.cart$ = await this.shoppingCartService.getCart();
 
     this.populateProducts();
 
