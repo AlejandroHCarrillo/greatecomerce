@@ -25,7 +25,6 @@ export class ShoppingCartService {
     
   }
   
-  // Promise<AngularFirebaseObject<ShoppingCart>>
   async getCart(): Promise<Observable<ShoppingCart>>{
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId)
@@ -75,22 +74,85 @@ export class ShoppingCartService {
     let refSubs = item$.snapshotChanges()
             .subscribe( resp => {
               
-              let currenrQty = 0;      
+              let currentQty = 0;      
               if(resp.payload.val()) {
-                currenrQty = ((resp.payload.val() as ShoppingCartItem).quantity || 0);
+                currentQty = ((resp.payload.val() as ShoppingCartItem).quantity || 0);
               } 
-              if( currenrQty === 1 && increment < 0 ){
+              if( currentQty === 1 && increment < 0 ){
                 item$.remove();
               } else {
                 item$.update({
                                 title: product.title, 
                                 imageUrl: product.imageUrl, 
                                 price: product.price, 
-                                quantity: (currenrQty || 0) + increment }); 
+                                quantity: (currentQty || 0) + increment }); 
               }
               refSubs.unsubscribe();
             });
   }
 
+  setProductLike(productId: string, userId: string, likeDislike: number){
+    console.log(productId, " like:", likeDislike);
+    
+    let prod = this.db.object('/stats/'+productId);
+    let totalLikes = 0;
+    
+    if (!prod){
+      this.db.list('/stats/').push( { productId: { likes: 1 } } );      
+      prod = this.db.object('/stats/' + productId );      
+    } 
+        
+    let subscription = prod.snapshotChanges().subscribe(x => {
+      let data = (x.payload.val() as any);        
+      if (data.likes){
+        totalLikes = (x.payload.val() as any).likes;
+      }
+        
+          
+      this.db.object('/stats/'+ productId + '/' + userId + '/like').set( likeDislike<0?0:1 );      
+      this.db.object('/stats/'+ productId + '/likes').set(totalLikes + likeDislike);
+      subscription.unsubscribe();
+    });
+
+  }
+
+  setProductRank(productId: string, userId: string, rank: number){
+    console.log(productId, "Rank: ", rank);
+
+    let prod = this.db.object('/stats/' + productId);
+    let totalCounter = 0;
+    let globlaRank = 0;
+    
+    if (!prod){
+      this.db.list('/stats/').push( { productId: { userId: { rank: rank } } } );
+      prod = this.db.object('/stats/' + productId );
+    } 
+    
+    let subscription = prod.snapshotChanges().subscribe(x => {
+      let data = (x.payload.val() as any);
+
+      if (!data.hasOwnProperty(userId) ){
+        this.db.object('/stats/'+ productId + '/totalCounter').set( totalCounter + 1);
+      }
+
+      let rankdiff = 0;
+      if(data[userId]){
+        rankdiff =  rank - data[userId].rank;
+      }
+    
+      if (data.totalCounter){
+        totalCounter = data.totalCounter;
+      }
+      if (data.globalRank){
+        globlaRank = data.globalRank;
+      }
+
+      this.db.object('/stats/'+ productId + '/' + userId + '/rank').set(rank);
+      this.db.object('/stats/'+ productId + '/globalRank').set(globlaRank + rankdiff);
+
+      subscription.unsubscribe();
+    });
+
+  }
 
 }

@@ -22,10 +22,21 @@ export class ProductCardComponent  {
   }
 
   toggleLike(){
+    let userId = "ZZZZ";
+
     this.product.like = !this.product.like;
+    this.cartService.setProductLike(this.product.key, userId, this.product.like ? 1 : -1);
   }
 
   setMyRank(rank: number){
+    let userId = "ZZZZ";
+
+    let rankChange = 0;
+    if(this.product.rank)
+      rankChange = rank - this.product.rank;
+
     this.product.rank = rank;
+    this.cartService.setProductRank(this.product.key, userId, rank);
+
   }
 }
