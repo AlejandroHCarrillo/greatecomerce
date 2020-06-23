@@ -25,7 +25,6 @@ export class ShoppingCartService {
     
   }
   
-  // Promise<AngularFirebaseObject<ShoppingCart>>
   async getCart(): Promise<Observable<ShoppingCart>>{
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId)
@@ -33,7 +32,7 @@ export class ShoppingCartService {
                   .pipe( 
                     map ( x => {
                       if(x.payload.val() === null){
-                        console.log("no existe el cart en la base de datos");
+                        // console.log("no existe el cart en la base de datos");
                         localStorage.removeItem('cartId');
                       }
                       return new ShoppingCart( ((x.payload.val()as any).items  as { [ productId : string ]: ShoppingCartItem }) ); 
@@ -75,22 +74,21 @@ export class ShoppingCartService {
     let refSubs = item$.snapshotChanges()
             .subscribe( resp => {
               
-              let currenrQty = 0;      
+              let currentQty = 0;      
               if(resp.payload.val()) {
-                currenrQty = ((resp.payload.val() as ShoppingCartItem).quantity || 0);
+                currentQty = ((resp.payload.val() as ShoppingCartItem).quantity || 0);
               } 
-              if( currenrQty === 1 && increment < 0 ){
+              if( currentQty === 1 && increment < 0 ){
                 item$.remove();
               } else {
                 item$.update({
                                 title: product.title, 
                                 imageUrl: product.imageUrl, 
                                 price: product.price, 
-                                quantity: (currenrQty || 0) + increment }); 
+                                quantity: (currentQty || 0) + increment }); 
               }
               refSubs.unsubscribe();
             });
   }
-
-
+  
 }

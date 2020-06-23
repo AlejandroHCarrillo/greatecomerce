@@ -1,23 +1,23 @@
 <div class="grid-container">
-
   <div class="row">
     <div class="col-2 menu-left">
       <product-filter [category]="categorySelected"></product-filter>
     </div>
-    <div class="col">    
-      <div class="row" *ngIf="cart$ | async as cart" style="width:100%">        
+    <div class="col" style="display: flex; justify-content: flex-end;">
+      
+      <div class="row" *ngIf="cart$ | async as cart" style="display: flex; justify-content: space-around; margin-right: .5rem;">        
         <div *ngIf="filteredProducts.length===0" class="col alert alert-warning" role="alert">
           No products found.
         </div>
-        
+
         <ng-container *ngFor="let item of filteredProducts; let i = index ">
-          <div class="col-md-4 item-card">
-            <product-card [product]="item" [shopping-cart]="cart"></product-card>
+          <div class="col-md-1 item-card" *ngIf="appUser">
+            <product-card [product]="item" [shopping-cart]="cart" [userId]="appUser.uid"></product-card>
           </div>
           <!-- <div *ngIf="(i+1) % 2 === 0" class="w-100"></div>   -->
         </ng-container>
+      </div>
 
-      </div>    
     </div>
   </div>
   

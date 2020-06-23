@@ -142,7 +142,8 @@ Uso:
 https://yuyang041060120.github.io/ng2-validation/index.html
 https://github.com/yuyang041060120/ng2-validation
 
-
+## Check the jQuery version using Console command (Chrome)
+console.log(jQuery().jquery)
 
 ## Uso del switchMap
 https://blog.angular-university.io/rxjs-switchmap-operator/

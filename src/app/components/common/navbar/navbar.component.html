@@ -1,17 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="z-index: 10000;">
   <div class="container">    
-    <a *ngIf="showMenu" (click)="toggleMenu()" class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >
+    <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >
       <i class="fas fa-store brand-primary"></i> G
   </a>
   
-  <button (click)="toggleMenu()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="navbar-collapse" 
-       [ngClass]="{'collapse ': showMenu}"
-      id="navbarNav">
+  <div class="navbar-collapse collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
-
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >
             <i class="fas fa-home brand-primary"></i>             
@@ -53,7 +50,16 @@
           </a>
   
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLink]="['/my/orders']" routerLinkActive="active" >My orders</a>
+            <a class="dropdown-item" [routerLink]="['/my/profile']" routerLinkActive="active" >
+              <i class="far fa-address-card brand-primary"></i>
+              My profile
+            </a>
+
+            
+            <a class="dropdown-item" [routerLink]="['/my/orders']" routerLinkActive="active" >
+              <i class="far fa-calendar-check  brand-primary"></i>
+              My orders
+            </a>
             
             <ng-container *ngIf="appUser.role == 'admin'" >
               <div class="dropdown-divider"></div>

@@ -5,4 +5,6 @@ export class Product{
   category: string;
   imageUrl: string;
   uid?: string;
+  like?: boolean;
+  rank?: number;
 }

@@ -1,0 +1,36 @@
+<div class="container main-container">
+  <h1>My youtube video channel</h1>
+  <hr>
+  <div class="card-columns" infiniteScroll  (scrolled)="onScroll()">
+    <div class="card animated fadeIn fast" *ngFor="let video of videos" >
+      <img [src]="video.thumbnails.high.url" class="card-img-top img-fluid" [alt]="video.title">
+      <div class="card-body">
+        <h5 class="card-title">{{video.title}}</h5>
+        <button class="btn btn-outline-primary btn-block"
+                (click)="verVideo(video)">Watch video</button>
+        <!-- <p class="card-text">{{video.description}}</p> -->
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-outline-primary btn-block" data-target="#myModal"
+      (click)="cargarMasVideos()">Load more videos...</button>
+</div>
+<br>
+<br>
+<br>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" *ngIf="videoSel">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">{{videoSel?.title}}</h5>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="315" [src]="videoSel.resourceId.videoId | video " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="modal-footer">
+        <button (click)="cerrarModal()" type="button" class="btn btn-secondary" >Close</button>
+      </div>
+    </div>
+  </div>
+</div>

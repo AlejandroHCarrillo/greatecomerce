@@ -3,6 +3,7 @@ import { AngularFireModule } from '@angular/fire';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AdminModule } from 'admin/admin.module';
 import { CoreModule } from 'core/core.module';
@@ -26,6 +27,7 @@ import { CustomMinDirective } from './directives/custom-min-validator.directive'
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
     SharedModule,
     CoreModule,

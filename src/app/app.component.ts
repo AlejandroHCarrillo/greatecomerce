@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'shared/services/user.service';
 import { AuthService } from 'shared/services/auth.service';
+declare var $ :any;
 
 @Component({
   selector: 'app-root',

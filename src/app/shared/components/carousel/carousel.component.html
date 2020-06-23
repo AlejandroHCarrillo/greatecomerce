@@ -1,0 +1,37 @@
+<div class="wide-container">
+  <div id="carouselCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselCaptions"  data-slide-to="i" *ngFor="let item of slides; let i=index" ></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img [src]="defaultSlide.bgImgUrl" class="d-block w-100" alt="{{defaultSlide.title}}" [ngClass]="{'blur': blurBackground}" >
+        <div class="carousel-caption d-none d-md-block">
+          <h5 *ngIf="!defaultSlide.imgUrl">{{defaultSlide.title}}</h5>
+          <p>{{defaultSlide.description}}</p>
+          <img *ngIf="defaultSlide.imgUrl" [src]="defaultSlide.imgUrl" alt="" class="testimonial-photo">
+          <h5 *ngIf="defaultSlide.imgUrl">{{defaultSlide.title}}</h5>
+        </div>
+      </div>
+
+      <div class="carousel-item" *ngFor="let slide of slides">
+        <img [src]="slide.bgImgUrl" class="d-block w-100" alt="{{slide.title}}" [ngClass]="{'blur': blurBackground}">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 *ngIf="!slide.imgUrl">{{slide.title}}</h5>
+          <p>{{slide.description}}</p>
+          <img *ngIf="slide.imgUrl" [src]="slide.imgUrl" alt="" class="testimonial-photo">
+          <h5 *ngIf="slide.imgUrl">{{slide.title}}</h5>
+        </div>
+      </div>
+
+    <a class="carousel-control-prev" href="#carouselCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>

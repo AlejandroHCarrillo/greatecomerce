@@ -20,6 +20,7 @@
       "admin/*" : [ "app/admin/*" ],
       "shopping/*" : [ "app/shopping/*" ],
       "core/*" : [ "app/core/*" ],
+      "images/*" : [ "assets/images/*" ],
     }
 
   },

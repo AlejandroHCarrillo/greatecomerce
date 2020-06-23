@@ -39,8 +39,4 @@ export class NavbarComponent implements OnInit  {
     this.router.navigate(['/']);
   }
 
-  toggleMenu(){
-    this.showMenu = !this.showMenu;
-  }
-
 }

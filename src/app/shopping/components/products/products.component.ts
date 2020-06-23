@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Product } from 'shared/models/product.model';
 import { ShoppingCart } from 'shared/models/shopping-cart.model';
 import { ProductService } from 'shared/services/product.service';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
+import { User } from 'shared/models/user.model';
+import { AuthService } from 'shared/services/auth.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-products',
@@ -13,27 +16,52 @@ import { ShoppingCartService } from 'shared/services/shopping-cart.service';
   styles: [ `  ` ]
 })
 export class ProductsComponent implements OnInit {
+  appUser: User;
   products : Product[] = [];
   filteredProducts: Product[] = [];
   categorySelected;
   cart$: Observable<ShoppingCart>;
 
+  userProdStats: any;
+
   constructor(private route: ActivatedRoute,
+              private authService: AuthService,
               private productService: ProductService,
               private shoppingCartService: ShoppingCartService
               ) { 
 
   }
 
-  async ngOnInit() {    
-   this.cart$ = await this.shoppingCartService.getCart();
+  async ngOnInit() {
+    this.authService.appUser$
+    .pipe(
+      switchMap((fireUser) =>  {
+        this.appUser = fireUser;
+        
+        if (fireUser) {
+          this.productService.getUserProductsStats(this.appUser.uid)
+          .subscribe(data => {
+            // console.log("x: ", data);
+            this.userProdStats = data;
+            this.populateUserStats();            
+          })
+          ;
+          // console.log("this.myProductLikesAndRanks$", this.userProdStats);          
+        }
+        return of(fireUser);
+      } )
+    )
+    .subscribe( fireUser => {
+        this.appUser = fireUser;
+        // console.log("fireUser:", fireUser.displayName);
+      } );
 
+    this.cart$ = await this.shoppingCartService.getCart();
     this.populateProducts();
-
   }
 
   private populateProducts(){
-    let x: ShoppingCart;
+    // let x: ShoppingCart;
     
     this.productService.getAll().pipe(
       switchMap( data => {
@@ -51,6 +79,35 @@ export class ProductsComponent implements OnInit {
     this.filteredProducts = (query) ? 
                             this.products.filter(p => p.category.toLowerCase().includes(query.toLowerCase()) ) :
                             this.products;
+  }
+
+  private populateUserStats(){
+    // console.log("this.userProdStats: ", this.userProdStats);
+
+    // if (!this.userProdStats){
+    //   console.log("todavia no llegan las estadisticas...");      
+    // }
+
+    this.filteredProducts.forEach(p =>{
+      if (!p) return false;
+
+      // console.log("filt prod:", p.key);
+      
+      const found = this.userProdStats.find((userStat : {key: string, like: boolean, rank: number}) => { 
+        // console.log("element: ", userStat);
+        // console.log(userStat.key);
+        // console.log(p.key);
+        
+        if (userStat) {
+          if(userStat.key === p.key){
+            p.like = userStat.like;
+            p.rank = userStat.rank;
+          }
+        }
+      } );
+
+      // console.log("found", p.key, found);
+    });
   }
 
 }
