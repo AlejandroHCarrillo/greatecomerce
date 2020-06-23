@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'shared/models/product.model';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/shopping-cart.model';
+import { ProductService } from 'shared/services/product.service';
 
 @Component({
   selector: 'product-card',
@@ -16,7 +17,8 @@ export class ProductCardComponent  {
 
   stars=['*','*','*','*','*'];
   
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private cartService: ShoppingCartService, 
+              private prodService: ProductService) { }
   
   addToCart(){ 
     this.cartService.addToCart(this.product);
@@ -24,7 +26,7 @@ export class ProductCardComponent  {
 
   toggleLike(){
     this.product.like = !this.product.like;
-    this.cartService.setProductLike(this.product.key, this.userId, this.product.like ? 1 : -1);
+    this.prodService.setProductLike(this.product.key, this.userId, this.product.like ? 1 : -1);
   }
 
   setMyRank(rank: number){
@@ -33,6 +35,6 @@ export class ProductCardComponent  {
       rankChange = rank - this.product.rank;
 
     this.product.rank = rank;
-    this.cartService.setProductRank(this.product.key, this.userId, rank);
+    this.prodService.setProductRank(this.product.key, this.userId, rank);
   }
 }

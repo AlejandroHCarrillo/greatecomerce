@@ -8,7 +8,8 @@
       <div class="row" *ngIf="cart$ | async as cart" style="display: flex; justify-content: space-around; margin-right: .5rem;">        
         <div *ngIf="filteredProducts.length===0" class="col alert alert-warning" role="alert">
           No products found.
-        </div>        
+        </div>
+
         <ng-container *ngFor="let item of filteredProducts; let i = index ">
           <div class="col-md-1 item-card" *ngIf="appUser">
             <product-card [product]="item" [shopping-cart]="cart" [userId]="appUser.uid"></product-card>
