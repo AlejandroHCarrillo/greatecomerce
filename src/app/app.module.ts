@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { CustomMaxDirective } from './directives/custom-max-validator.directive';
 import { CustomMinDirective } from './directives/custom-min-validator.directive';
+import { ReportsModule } from './reports/reports.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CustomMinDirective } from './directives/custom-min-validator.directive'
     CoreModule,
     AdminModule,
     ShoppingModule,
+    ReportsModule,
     
     AppRoutingModule,
 

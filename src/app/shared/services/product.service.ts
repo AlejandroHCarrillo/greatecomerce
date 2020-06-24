@@ -144,4 +144,26 @@ export class ProductService {
 
   }
 
+  getProductLikes(){
+    // console.log("getProductLikes: ");
+    let orderColumn = 'globalRank';    
+    return this.db.list('/stats', ref => ref.orderByChild(orderColumn) ).snapshotChanges().pipe(      
+        map((data => 
+          data.map(item => (
+            { 
+              name: item.payload.key,
+              value: item.payload.val()[orderColumn]??0,
+              // product: item.payload.key, 
+              // likes: item.payload.val()["likes"]??0, 
+              // globalRank: item.payload.val()["globalRank"]??0, 
+              // totalCounter: item.payload.val()["totalCounter"]??0 
+            }
+          ))
+        )
+
+      ))
+  };
+
+  
+
 }
