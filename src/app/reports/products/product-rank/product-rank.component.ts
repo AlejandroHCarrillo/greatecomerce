@@ -11,20 +11,7 @@ import { ProductService } from 'shared/services/product.service';
 })
 export class ProductRankComponent implements OnDestroy {
 
-  data: any[] = [
-  {
-    "name": "Germany",
-    "value": 8940000
-  },
-  {
-    "name": "USA",
-    "value": 5000000
-  },
-  {
-    "name": "France",
-    "value": 7200000
-  }
-];
+  data: any[] = [];
 
   refInterval: any;
   // multi: any[];
@@ -68,14 +55,16 @@ export class ProductRankComponent implements OnDestroy {
   }
 
   private async getData(){
+    //  await this.prodService.getProductLikes();
     await this.prodService.getProductLikes()
               .subscribe(data => {
-                console.log(data);
+                // console.log(data);
                 let tempData : any[] = [];
                 for (const item of data) {
                   tempData.unshift(item);
                 }
                 this.data = tempData;
               })
+
   }
 }

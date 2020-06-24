@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'shared/models/product.model';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { combineLatest, of } from 'rxjs';
+import { uniq, flatten } from 'lodash'
+// import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -145,23 +148,59 @@ export class ProductService {
   }
 
   getProductLikes(){
-    // console.log("getProductLikes: ");
-    let orderColumn = 'globalRank';    
-    return this.db.list('/stats', ref => ref.orderByChild(orderColumn) ).snapshotChanges().pipe(      
-        map((data => 
+    let orderColumn = 'likes';    
+    
+    return this.db.list('/stats', ref => ref.orderByChild(orderColumn) ).snapshotChanges()
+    .pipe(
+        map(data => 
           data.map(item => (
             { 
-              name: item.payload.key,
+              productId: item.payload.key,
               value: item.payload.val()[orderColumn]??0,
-              // product: item.payload.key, 
-              // likes: item.payload.val()["likes"]??0, 
-              // globalRank: item.payload.val()["globalRank"]??0, 
-              // totalCounter: item.payload.val()["totalCounter"]??0 
             }
-          ))
+          ))))
+    .pipe(
+      switchMap(stadistics => {      
+        return combineLatest(
+          of(stadistics),
+          this.db.list('/products', ref => ref.orderByKey() ).snapshotChanges().pipe(
+            map(data => 
+              data.map(item => (
+                { 
+                  productId: item.payload.key,
+                  title: item.payload.val()["title"]??"",
+                }
+              )))
+          )
         )
+      }),
+      map(([stats, products]) => {        
+        return stats.map(stat => {
+          return {
+            name: products.find(p => p.productId === stat.productId).title,
+            value: stat.value
+          }
+        })
+      })
+    )
 
-      ))
+    // return this.db.list('/stats', ref => ref.orderByChild(orderColumn) ).snapshotChanges().pipe(      
+    //     map((data => 
+    //       data.map(item => (
+    //         { 
+    //           // name: item.payload.key,
+    //           name: this.db.object('/products/' + item.payload.key).snapshotChanges().pipe(map(x => (x as any).title )),
+    //           value: item.payload.val()[orderColumn]??0,
+    //           // product: item.payload.key, 
+    //           // likes: item.payload.val()["likes"]??0, 
+    //           // globalRank: item.payload.val()["globalRank"]??0, 
+    //           // totalCounter: item.payload.val()["totalCounter"]??0 
+    //         }
+    //       ))
+    //     )
+
+    //   ))
+    
   };
 
   
