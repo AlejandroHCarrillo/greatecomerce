@@ -1,0 +1,64 @@
+.container{
+  padding-bottom: 3rem;
+}
+
+h1.title{
+  font-size: 1.5rem;
+}
+
+.grap-bar{
+  background-color: tomato;
+  text-align: center;
+  font-size: .5rem;
+  border-radius: 5px;
+}
+
+table{
+  width: 100%;
+  background-color:lightgray;
+}
+
+thead>th {
+  text-align: center;
+  border-bottom: solid 1px;
+}
+
+thead>th:first-child {
+  width: 20%;
+}
+
+thead>th:last-child {
+  width: 10%;
+  text-align: center;
+}
+
+tbody>tr {
+  border: white solid 1px;
+}
+
+tbody>tr:hover {
+  background-color: rgba(135, 135, 135);
+  border-bottom: black solid 1px;
+}
+
+tbody>tr>td
+{
+  background-color: rgba(235, 235, 235, 0.55);
+  padding-left: .3rem;
+  padding-right: .3rem;
+  font-size: .7rem;
+}
+
+tbody>tr>td:first-child  {
+  text-align: left;
+}
+
+tbody>tr>td:nth-child(2)  {
+  min-width: 5rem;
+  text-align: center;
+  background-color: rgba(235, 235, 235, 0.55);
+}
+
+tbody>tr>td:last-child {
+  text-align: center;
+}

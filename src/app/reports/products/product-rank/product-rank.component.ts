@@ -1,7 +1,8 @@
 import { Component, NgModule, OnDestroy } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ProductService } from 'shared/services/product.service';
+import { Observable } from 'rxjs';
 // import { single } from './data';
 
 @Component({
@@ -10,9 +11,9 @@ import { ProductService } from 'shared/services/product.service';
   styleUrls: ['./product-rank.component.css']
 })
 export class ProductRankComponent implements OnDestroy {
+  data$: Observable<any[]>;
 
   data: any[] = [];
-
   refInterval: any;
   // multi: any[];
   // view: any[] = [700, 400];
@@ -33,17 +34,8 @@ export class ProductRankComponent implements OnDestroy {
   };
 
   constructor( private prodService: ProductService ) {
-    // Object.assign(this, { single })
-    this.getData();
-    // this.refInterval = setInterval(()=>{
-    //                       console.log("tick");
-    //                       const newResults =  [...this.data];
-    //                       for (let item in newResults) {
-    //                         newResults[item].value = Math.round( Math.random() * 500 );
-    //                       }
-    //                       this.data = [...newResults]
-                          
-    //                     }, 1500 );
+    // this.getData();
+    this.getObsData();
   }
 
   ngOnDestroy(): void {
@@ -54,11 +46,13 @@ export class ProductRankComponent implements OnDestroy {
     console.log(event);
   }
 
+  private getObsData(){
+    this.data$ = this.prodService.getProductLikes();
+  }
+
   private async getData(){
-    //  await this.prodService.getProductLikes();
     await this.prodService.getProductLikes()
               .subscribe(data => {
-                // console.log(data);
                 let tempData : any[] = [];
                 for (const item of data) {
                   tempData.unshift(item);
@@ -67,4 +61,5 @@ export class ProductRankComponent implements OnDestroy {
               })
 
   }
+
 }

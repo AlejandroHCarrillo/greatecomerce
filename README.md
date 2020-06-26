@@ -129,6 +129,10 @@ https://firebase.google.com/docs/database/web/lists-of-data#filtering_data
 Listas "Como mapear el payload"
 https://github.com/angular/angularfire/blob/master/docs/rtdb/lists.md
 
+### How to “inner join” data from multiple collections on Angular & Firebase
+
+https://medium.com/@joaqcid/how-to-inner-join-data-from-multiple-collections-on-angular-firebase-bfd04f6b36b7
+
 ## Validaciones personalizadas  - custom validations
 https://angular.io/guide/attribute-directives
 https://www.concretepage.com/angular-2/angular-4-min-max-validation
@@ -159,8 +163,10 @@ https://www.creative-tim.com/product/now-ui-dashboard-angular
 https://github.com/swimlane/ngx-charts
 
 https://swimlane.github.io/ngx-charts/#/ngx-charts/bar-vertical
+https://swimlane.gitbook.io/ngx-charts/examples/bar-charts/vertical-bar-chart
 
 https://stackblitz.com/edit/vertical-bar-chart?embed=1&file=app/app.component.ts
+
 
 ### Instalar graficas 
 https://swimlane.gitbook.io/ngx-charts/installing

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'primeng/table';
 import { SharedRoutingModule } from './shared-routing.module';
@@ -24,6 +24,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 import { VideoPipe } from './pipes/video.pipe';
 import { VideoCatalogComponent } from './components/video-catalog/video-catalog.component';
+import { GraphBarHorizontalComponent } from './components/graph-bar-horizontal/graph-bar-horizontal.component';
 
 @NgModule({
   declarations: [ 
@@ -33,12 +34,14 @@ import { VideoCatalogComponent } from './components/video-catalog/video-catalog.
     CarouselComponent,
     UnderConstructionComponent,
     VideoPipe,
-    VideoCatalogComponent
+    VideoCatalogComponent,
+    GraphBarHorizontalComponent
   ],
   imports: [
     CommonModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     TableModule,
 
     SharedRoutingModule,
@@ -51,6 +54,7 @@ import { VideoCatalogComponent } from './components/video-catalog/video-catalog.
   ],
   exports: [ 
     FormsModule,
+    ReactiveFormsModule,
     TableModule,
     VideoPipe,
 
@@ -66,7 +70,7 @@ import { VideoCatalogComponent } from './components/video-catalog/video-catalog.
     CarouselComponent,
 
     VideoCatalogComponent,
-
+    GraphBarHorizontalComponent
   ],
   providers: [
     AuthService,
