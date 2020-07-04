@@ -6,9 +6,11 @@ import { MyOrdersComponent } from 'shopping/components/my-orders/my-orders.compo
 import { OrderSuccessComponent } from 'shopping/components/order-success/order-success.component';
 import { ShoppingCartComponent } from 'shopping/components/shopping-cart/shopping-cart.component';
 import { ProductsComponent } from './components/products/products.component';
+import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 
 const routes: Routes = [
   { path: 'products', component: ProductsComponent},
+  { path: 'products/detail/:id', component: ProductDetailComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'check-out', component:CheckoutComponent, canActivate: [ AuthGuard ] },
   { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [ AuthGuard ] },

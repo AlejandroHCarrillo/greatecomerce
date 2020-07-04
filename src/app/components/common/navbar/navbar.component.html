@@ -22,12 +22,12 @@
           </a>
         </li>
 
-        <li class="nav-item" routerLinkActive="active">
+        <!-- <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/admin/reports/products/rank']">
             <i class="far fa-chart-bar brand-primary"></i>
             <span class="menu-text">Graficas</span>
           </a>
-        </li>
+        </li> -->
 
         <!-- <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/graph/bh/products']">
@@ -48,6 +48,30 @@
       </ul>
 
       <ul class="navbar-nav">
+        <li *ngIf="appUser" ngbDropdown class="nav-item dropdown">
+
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">           
+            Graphs and Reports
+          </a>
+
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/admin/reports/products/rank']" routerLinkActive="active" >
+              <i class="far fa-chart-bar brand-primary"></i>
+              Graphs
+            </a>
+
+            <a class="dropdown-item" [routerLink]="['/under-construction']" routerLinkActive="active" >
+              <i class="fas fa-file-contract brand-primary"></i>
+              Reports
+            </a>
+          </div>
+
+
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+
         <li *ngIf="appUser; else anonymusUser" ngbDropdown class="nav-item dropdown">
           <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img *ngIf="appUser.photoURL" [src]="appUser.photoURL" alt="appUser.displayName" 

@@ -1,5 +1,7 @@
 <div class="card">
-  <img *ngIf="product.imageUrl" [src]="product.imageUrl" class="card-img-top img-fluid" [alt]="product.title">
+  <a [routerLink]="['/products/detail/', product.key ]" >
+    <img *ngIf="product.imageUrl" [src]="product.imageUrl" class="card-img-top img-fluid" [alt]="product.title">
+  </a>
   <div class="like-rank" style="display: flex; justify-content: space-between;">    
     <div *ngIf="showActions && shoppingCart" >
       <ng-container *ngFor="let star of stars; let i=index">

@@ -12,6 +12,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShoppingRoutingModule } from './shopping-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     OrderSuccessComponent,
     ProductsComponent,
     ShoppingCartComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    ProductDetailComponent
   ],
   imports: [
     NgbModule,
@@ -39,6 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductsComponent,
     ShoppingCartComponent,
     ProductFilterComponent,
+    ProductDetailComponent,
 
   ]
 })
