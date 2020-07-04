@@ -25,6 +25,7 @@ import { UnderConstructionComponent } from './components/under-construction/unde
 import { VideoPipe } from './pipes/video.pipe';
 import { VideoCatalogComponent } from './components/video-catalog/video-catalog.component';
 import { GraphBarHorizontalComponent } from './components/graph-bar-horizontal/graph-bar-horizontal.component';
+import { GraphBarVerticalComponent } from './components/graph-bar-vertical/graph-bar-vertical.component';
 
 @NgModule({
   declarations: [ 
@@ -35,7 +36,8 @@ import { GraphBarHorizontalComponent } from './components/graph-bar-horizontal/g
     UnderConstructionComponent,
     VideoPipe,
     VideoCatalogComponent,
-    GraphBarHorizontalComponent
+    GraphBarHorizontalComponent,
+    GraphBarVerticalComponent
   ],
   imports: [
     CommonModule,
@@ -70,7 +72,8 @@ import { GraphBarHorizontalComponent } from './components/graph-bar-horizontal/g
     CarouselComponent,
 
     VideoCatalogComponent,
-    GraphBarHorizontalComponent
+    GraphBarHorizontalComponent,
+    GraphBarVerticalComponent
   ],
   providers: [
     AuthService,

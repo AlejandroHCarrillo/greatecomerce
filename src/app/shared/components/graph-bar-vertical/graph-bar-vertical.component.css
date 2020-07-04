@@ -6,11 +6,17 @@ h1.title{
   font-size: 1.5rem;
 }
 
-.grap-bar{
-  background-color: tomato;
-  text-align: center;
+.vertical-bar{
+  height: 300px;
+  vertical-align: bottom;
+  border: white solid 1px; 
+  width: 100%;
+}
+
+.grap-vbar{
   font-size: .5rem;
   border-radius: 5px;
+  margin: 0 2px;
 }
 
 table{
@@ -23,7 +29,20 @@ thead>th {
   border-bottom: solid 1px;
 }
 
-thead>th:first-child {
+.vertical-text{
+  transform: rotate(-90deg);
+  font-size: .6rem;
+  height: 5rem;
+  width: 5rem;
+}
+
+td.center-text{
+  text-align: center;
+  font-size: .8rem;
+}
+
+
+/* thead>th:first-child {
   width: 20%;
 }
 
@@ -81,4 +100,4 @@ tr.summary>td:last-child{
   text-align: right;
   font-weight: 500;
   padding-right: .8rem;
-}
+} */

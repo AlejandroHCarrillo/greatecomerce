@@ -6,13 +6,12 @@ import { GraphsService } from 'shared/services/graphs.service';
 import { GraphSummary } from 'shared/models/graph-summary.model';
 
 @Component({
-  selector: 'graph-bar-horizontal',
-  templateUrl: './graph-bar-horizontal.component.html',
-  styleUrls: ['./graph-bar-horizontal.component.css']
+  selector: 'graph-bar-vertical',
+  templateUrl: './graph-bar-vertical.component.html',
+  styleUrls: ['./graph-bar-vertical.component.css']
 })
-export class GraphBarHorizontalComponent implements OnInit {
+export class GraphBarVerticalComponent implements OnInit {
   @Input('data') results: Observable <GraphItem[]>;
-
   data: GraphItem[] = [];
   summary = new GraphSummary();
   order: 'asc';
@@ -32,12 +31,12 @@ export class GraphBarHorizontalComponent implements OnInit {
     this.selectControl.setValue(this.order);
   }
 
-  calcBarWidth(value: number, maxValue: number): number{
+  calcBarHeight(value: number, maxValue: number): number{
     if(maxValue==0) return 0;
     return Math.round((value/maxValue)*100);
   }
 
-  setStyleBar(value: number, index: number){
+  setStyleVBar(value: number, index: number){
     const colorsLen = this.graphService.colorSchema.length;
     let indexColor = 0;
 
@@ -48,9 +47,11 @@ export class GraphBarHorizontalComponent implements OnInit {
       indexColor = index-(times*colorsLen);
     }
 
-    let retObj = { 'width': (this.calcBarWidth(value, 7))+'%',
+    let retObj = { 'height': (this.calcBarHeight(value, 7))+'%',
                    'background-color': this.graphService.colorSchema[indexColor],
-                   'color': 'whitesmoke'
+                   'color': 'whitesmoke',
+                   'vertical-align': 'bottom',
+                   'text-align': 'center'
                  }
     if (value === 0) {
       retObj.color = 'gray';

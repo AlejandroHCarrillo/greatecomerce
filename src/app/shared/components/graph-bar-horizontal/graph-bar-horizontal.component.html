@@ -19,39 +19,52 @@
     <table>
       <thead>
         <th>Name</th>
-        <th>Graph maxvalue: {{ maxValue }}</th>
+        <th></th>
+        <th></th>
         <th>Value</th>
       </thead>
       <tbody>
         <tr *ngFor="let item of data; let i=index" >
           <td>{{item.name}}</td>
-          <td>
+          <td colspan="2">
             <div class="grap-bar" [ngStyle]="setStyleBar(item.value, i)" >
-              {{ calcWidth(item.value, 7 ) }}%
+              {{ calcBarWidth(item.value, 7 ) }}%
             </div>
           </td>
           <td>{{item.value}}</td>
         </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div>
-    <table>
-      <tr>
+    <tr class="summary">
+        <td></td>
+        <td></td>
         <td>Total Items:</td>
-        <td>{{ data.length }}</td>
+        <td>{{ summary.counter }}</td>
       </tr>
-      <tr>
+      <tr class="summary">
+        <td></td>
+        <td></td>
         <td>Max value:</td>
-        <td>{{maxValue}}</td>
+        <td>{{ summary.maxValue }}</td>
       </tr>
-      <tr>
+      <tr class="summary">
+        <td></td>
+        <td></td>
         <td>Min value:</td>
-        <td>{{minValue}}</td>
+        <td>{{ summary.minValue }}</td>
       </tr>
-    </table>
+      <tr class="summary">
+        <td></td>
+        <td></td>
+        <td>Sum:</td>
+        <td>{{ summary.sum }}</td>
+      </tr>
+      <tr class="summary">
+        <td></td>
+        <td></td>
+        <td>Average:</td>
+        <td>{{ summary.average | number:'1.0-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
   </div>
-
 
 </div>

@@ -1,0 +1,63 @@
+<div class="container">
+
+  <h1 class="title">Grafica horizontal</h1>
+  <select name="grap-type" id="grap-type"> 
+    <option value="product-likes">Product likes</option>
+    <option value="product-rank">Product Rank</option>
+    <option value="sales-product">Product Sales</option>
+    <option value="sales-product-category">Product Sales per category</option>
+  </select>
+
+  <select [formControl]="selectControl" (change)="changeOrder()" >
+    <option value="desc">Desc</option>
+    <option value="asc">Asc</option>
+  </select>
+
+  <div class="">
+    <table>
+      <thead>
+      </thead>
+      <tbody>        
+        <tr> <td class="center-text" *ngFor="let item of data; let i=index">{{item.value}}</td> </tr>
+        <tr>
+          <td class="vertical-bar" *ngFor="let item of data; let i=index"
+          >
+            <div class="grap-vbar" [ngStyle]="setStyleVBar(item.value, i)" >
+              <div>
+                {{ calcBarHeight(item.value, 7 ) }}%
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr> <td class="vertical-text" *ngFor="let item of data; let i=index">{{ item.name }}</td> </tr>
+
+        <tr class="summary">
+        <td></td>
+        <td colspan="4">Total Items:</td>
+        <td colspan="4">{{ summary.counter }}</td>
+      </tr>
+      <tr class="summary">
+        <td></td>
+        <td colspan="4">Max value:</td>
+        <td colspan="4">{{ summary.maxValue }}</td>
+      </tr>
+      <tr class="summary">
+        <td></td>
+        <td colspan="4">Min value:</td>
+        <td colspan="4">{{ summary.minValue }}</td>
+      </tr>
+      <tr class="summary">
+        <td></td>
+        <td colspan="4">Sum:</td>
+        <td colspan="4">{{ summary.sum }}</td>
+      </tr>
+      <tr class="summary">
+        <td></td>
+        <td colspan="4">Average:</td>
+        <td colspan="4">{{ summary.average | number:'1.0-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+</div>
