@@ -11,7 +11,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService implements OnInit {
-  loggedUserId: string;
+  logUserId: string;
   user$: Observable<firebase.User>;
 
   constructor(public afAuth: AngularFireAuth, 
@@ -19,14 +19,11 @@ export class UserService implements OnInit {
   {
   }
   ngOnInit() {
-    this.getIdUserLogged
-        .subscribe( id => {
-          this.loggedUserId = id ;
-        }); 
+    this.saveUserIdInLocalStorage();
   }
 
   save(user: firebase.User){
-    let usuario = new User(this.loggedUserId);
+    let usuario = new User(this.logUserId);
 
     usuario.uid = user.uid;
     usuario.displayName = user.displayName;
@@ -76,10 +73,29 @@ export class UserService implements OnInit {
                   );
   }
 
-  get getIdUserLogged(){
-    return this.afAuth.authState
+  saveUserIdInLocalStorage(){
+    this.afAuth.authState
     .pipe(
-      map( user => { return (user as any ).uid } )
+      map( user => {
+        console.log("user: ", user);
+        localStorage.setItem("ecuser", (user as any ).uid);
+        this.logUserId = (user as any ).uid; 
+      })
     );
   }
+
+  getUserId(){
+   return this.afAuth.authState
+    .pipe(
+      map( user => {
+        this.logUserId = (user as any ).uid;
+        return (user as any ).uid;
+      })
+    ).subscribe(uid => {
+      this.logUserId = uid;
+      return uid;
+    })
+    ;
+  }
+
 }

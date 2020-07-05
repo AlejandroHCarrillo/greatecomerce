@@ -44,11 +44,12 @@ export class CategoryFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.userService.getIdUserLogged
-    .subscribe(id => {
-     //  console.log("userId: ", id);
-      this.loggedUserId = id;
-     } );
+    this.loggedUserId = this.userService.logUserId;
+    // this.userService.UserIdObservable
+    // .subscribe(id => {
+    //  //  console.log("userId: ", id);
+    //   this.loggedUserId = id;
+    //  } );
   }
 
   save(category: Category){

@@ -23,9 +23,6 @@ export class ProductService {
   }
 
   getUserProductsStats(userId: string){
-    // console.log("the user to getUserProductsStats is: ", userId);
-    // console.log('/users/' + userId + '/my-products-stats');
-    
     return this.db.list('/users/' + userId + '/my-products-stats').snapshotChanges()
     .pipe( 
             map(data => 
@@ -34,6 +31,17 @@ export class ProductService {
     );
   }
 
+  getUserProductStats(userId: string, productId: string){
+    console.log("getUserProductStats -> userId", userId);
+    
+    return this.db.list('/users/' + userId + '/my-products-stats/' + productId ).snapshotChanges()
+    .pipe( 
+            map(data =>
+                // data.map(item => ({ item: item.payload.val() }))
+                data.map(item => ({ key: item.key, value: item.payload.val() }))
+            )
+    );
+  }
 
 
   getById(uid: string) {
@@ -52,12 +60,9 @@ export class ProductService {
 
   delete(uid:string){
     return this.db.object('/products/' + uid).remove();
-
   }
 
-  setProductLike(productId: string, userId: string, likeDislike: number){
-    // console.log(productId, " like:", likeDislike);
-    
+  setProductLike(productId: string, userId: string, likeDislike: number){    
     let prod = this.db.object('/stats/' + productId);
     let totalLikes = 0;
 
@@ -81,7 +86,6 @@ export class ProductService {
 
       if (!data.hasOwnProperty(userId) ){
         this.db.object('/stats/'+ productId + '/' + userId + '/like').set(1);
-        // this.db.object('/stats/'+ productId + '/likes').set( 1 );
       }
 
       if (data.likes !== undefined ){
@@ -110,9 +114,7 @@ export class ProductService {
     let subscription = prod.snapshotChanges().subscribe(x => {
       let data = (x.payload.val() as any);
 
-      if (!data){
-        // console.log("No habia datos");
-        
+      if (!data){        
         this.db.object('/stats/'+ productId + '/' + userId + '/rank').set(rank);
         this.db.object('/stats/'+ productId + '/totalCounter').set(1);
         this.db.object('/stats/'+ productId + '/globalRank').set(rank);
@@ -182,25 +184,7 @@ export class ProductService {
           }
         })
       })
-    )
-
-    // return this.db.list('/stats', ref => ref.orderByChild(orderColumn) ).snapshotChanges().pipe(      
-    //     map((data => 
-    //       data.map(item => (
-    //         { 
-    //           // name: item.payload.key,
-    //           name: this.db.object('/products/' + item.payload.key).snapshotChanges().pipe(map(x => (x as any).title )),
-    //           value: item.payload.val()[orderColumn]??0,
-    //           // product: item.payload.key, 
-    //           // likes: item.payload.val()["likes"]??0, 
-    //           // globalRank: item.payload.val()["globalRank"]??0, 
-    //           // totalCounter: item.payload.val()["totalCounter"]??0 
-    //         }
-    //       ))
-    //     )
-
-    //   ))
-    
+    )    
   };
 
   

@@ -124,6 +124,20 @@ th.total{
   color: #805B36;
 }
 
+.like-rank { 
+  text-align: right;
+  padding: 3px 10px;
+ }
+
+ .rank{
+   color: #FFC312;
+ }
+
+ .like{
+  color: #EA2027;
+ }
+
+
 @media (min-width: 581px), (max-width: 650px) {
   .container, .container-md, .container-sm {
     max-width: 100%;

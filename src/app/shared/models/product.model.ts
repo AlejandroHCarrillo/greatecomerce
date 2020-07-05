@@ -8,5 +8,6 @@ export class Product{
   uid?: string;
   like?: boolean;
   rank?: number;
+  unit?: string;
   images?: { key:string, imageUrl: string }[];
 }

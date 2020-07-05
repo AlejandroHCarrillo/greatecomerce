@@ -8,7 +8,6 @@ import { ProductService } from 'shared/services/product.service';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { User } from 'shared/models/user.model';
 import { AuthService } from 'shared/services/auth.service';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-products',
@@ -41,19 +40,16 @@ export class ProductsComponent implements OnInit {
         if (fireUser) {
           this.productService.getUserProductsStats(this.appUser.uid)
           .subscribe(data => {
-            // console.log("x: ", data);
             this.userProdStats = data;
             this.populateUserStats();            
           })
           ;
-          // console.log("this.myProductLikesAndRanks$", this.userProdStats);          
         }
         return of(fireUser);
       } )
     )
     .subscribe( fireUser => {
         this.appUser = fireUser;
-        // console.log("fireUser:", fireUser.displayName);
       } );
 
     this.cart$ = await this.shoppingCartService.getCart();
