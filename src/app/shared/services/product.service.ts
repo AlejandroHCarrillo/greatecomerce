@@ -3,8 +3,6 @@ import { Product } from 'shared/models/product.model';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map, switchMap } from 'rxjs/operators';
 import { combineLatest, of } from 'rxjs';
-import { uniq, flatten } from 'lodash'
-// import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -32,15 +30,21 @@ export class ProductService {
   }
 
   getUserProductStats(userId: string, productId: string){
-    console.log("getUserProductStats -> userId", userId);
-    
-    return this.db.list('/users/' + userId + '/my-products-stats/' + productId ).snapshotChanges()
+    return this.db.list('/users/' + userId + '/my-products-stats', ref => ref.child(productId) ).snapshotChanges()
     .pipe( 
-            map(data =>
-                // data.map(item => ({ item: item.payload.val() }))
-                data.map(item => ({ key: item.key, value: item.payload.val() }))
+            map(data => 
+                data.map(item => ({ key: item.payload.key, value: item.payload.val() }))
             )
     );
+
+    // console.log("getUserProductStats -> userId", userId);
+    
+    // return this.db.list('/users/' + userId + '/my-products-stats/', ref => ref.child(productId) ).snapshotChanges()
+    // .pipe( 
+    //         map(data =>
+    //             data.map(item => ({ key: item.key, value: item.payload.val() }))
+    //         )
+    // );
   }
 
 

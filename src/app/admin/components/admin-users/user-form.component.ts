@@ -46,14 +46,12 @@ export class UserFormComponent implements OnInit {
       this.roles = Object.entries(roles);
     });
 
-    this.loggedUserId = this.userService.logUserId;
+    this.userService.getIdUserLogged
+    .subscribe(id => {
+      this.loggedUserId = id;
+     } );
+   //  console.log("Este es el id del usuario loggeado", this.userId);
 
-    //  this.userService.UserIdObservable
-    //  .subscribe(id => {
-    //   //  console.log("userId: ", id);
-    //    this.loggedUserId = id;
-    //   } );
-    //  console.log("Este es el id del usuario loggeado", this.loggedUser);
   }
 
   save(user:User){
