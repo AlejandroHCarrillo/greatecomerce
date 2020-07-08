@@ -42,7 +42,7 @@ export class ProductDetailComponent implements OnInit {
     this.userService.getIdUserLogged
     .pipe(
       switchMap((userId) => {
-        console.log("este es el id del switchMap", userId);
+        // console.log("este es el id del switchMap", userId);
         if(userId){
          this.userId = userId;
         this.getProduct(this.productId, userId);
@@ -52,13 +52,7 @@ export class ProductDetailComponent implements OnInit {
         return of(null);
       })
     )
-    .subscribe(id => {
-      console.log("-->", id);
-     //  this.userId = id;
-     //  console.log("Este es el id del usuario loggeado", this.userId);
-
-   })
-   ;
+    .subscribe();
    
     this.cartService.getCart().then( c => {
       c.subscribe(x => { this.shoppingCart = x});
@@ -66,8 +60,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   private getProduct(productId:string, userid: string){
-    console.log("productId: ", productId);
-    console.log("userid: ", userid);
+    // console.log("productId: ", productId);
+    // console.log("userid: ", userid);
     
     if (productId && productId!='new' ) {
       this.productService.getById(this.productId).snapshotChanges()
@@ -76,7 +70,7 @@ export class ProductDetailComponent implements OnInit {
                 key: item.payload.key, ...(item.payload.val() as Product) 
               }) )
           ).subscribe( data => { 
-            console.log("data", data);
+            // console.log("data", data);
             
             this.product = (data as Product);
             if (data.images) {
@@ -97,7 +91,7 @@ export class ProductDetailComponent implements OnInit {
       .subscribe( prodStats =>{        
         if ( prodStats ) {
 
-          console.log(prodStats);
+          // console.log(prodStats);
           if (prodStats.length==0) return;
           if (prodStats.length==1 && prodStats[0].key == "like") {
             this.product.like = (prodStats[0].value as boolean);

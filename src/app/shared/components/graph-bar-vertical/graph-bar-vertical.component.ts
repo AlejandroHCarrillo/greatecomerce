@@ -32,8 +32,10 @@ export class GraphBarVerticalComponent implements OnInit {
   }
 
   calcBarHeight(value: number, maxValue: number): number{
-    if(maxValue==0) return 0;
-    return Math.round((value/maxValue)*100);
+    console.log("maxValue: ", this.summary.maxValue);
+    
+    if(this.summary.maxValue==0) return 0;
+    return Math.round((value/this.summary.maxValue)*100);
   }
 
   setStyleVBar(value: number, index: number){

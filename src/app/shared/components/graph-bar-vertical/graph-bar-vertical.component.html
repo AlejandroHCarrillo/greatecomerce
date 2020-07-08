@@ -24,7 +24,7 @@
           >
             <div class="grap-vbar" [ngStyle]="setStyleVBar(item.value, i)" >
               <div>
-                {{ calcBarHeight(item.value, 7 ) }}%
+                {{ calcBarHeight(item.value, summary.maxValue ) }}%
               </div>
             </div>
           </td>

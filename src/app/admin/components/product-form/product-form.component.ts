@@ -17,6 +17,8 @@ import { map } from 'rxjs/operators';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
+  units$;
+
   product = new Product();
   productId : string;
 
@@ -24,7 +26,10 @@ export class ProductFormComponent implements OnInit {
               private route: ActivatedRoute,
               private categoryService: CategoryService,
               private productService: ProductService) {
-    this.categories$ = categoryService.getAll();    
+
+    this.categories$ = categoryService.getAll();
+    this.units$ = productService.getAllUnits();
+
     this.productId = this.route.snapshot.paramMap.get('id');
     
     if (this.productId && this.productId!='new' ) {
@@ -33,8 +38,8 @@ export class ProductFormComponent implements OnInit {
                               map( item => ( {                                             
                                 key: item.payload.key, ...(item.payload.val() as Product) 
                               }) )
-                          ).subscribe(data => { console.log(data);
-                            
+                          ).subscribe(data => { 
+                            // console.log(data);                            
                             this.product = data;
                           });
     }

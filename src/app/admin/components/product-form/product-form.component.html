@@ -23,16 +23,25 @@
             <div *ngIf="price.errors?.customMin">El precio debe ser mayor que cero.</div>
           </div>
         </div>
-        
+
         <div class="form-group">
           <label for="category">Category</label>
           <select type="text" #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
             <option value=""></option>
             <option *ngFor="let cat of categories$ | async " [value]="cat.key">
-              {{ cat.name }}      
+              {{ cat.description }}      
             </option>
           </select>
           <div class="alert alert-danger" *ngIf="category.touched && category.invalid">La categoria del producto es requerida.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea #description="ngModel" [(ngModel)]="product.description" name="description" id="description" class="form-control" rows="5" maxlength="500"></textarea>
+          <span *ngIf="product && product.description" class="float-right">
+            {{ 500 - product.description.length }}
+          </span> 
+          <!-- <div class="alert alert-danger" *ngIf="description.touched && description.invalid">El nombre del producto es requerido.</div> -->
         </div>
         
         <div class="form-group">
@@ -40,6 +49,18 @@
           <input type="text" #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" id="imageUrl" class="form-control" required>
           <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">La Url de la imagen del producto es requerido.</div>        
         </div>
+
+        <div class="form-group">
+          <label for="unit">Units</label>
+          <select type="text" #unit="ngModel" [(ngModel)]="product.unit" name="unit" id="unit" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let u of units$ | async " [value]="u.key">
+              {{ u.unit }}
+            </option>
+          </select>
+          <!-- <div class="alert alert-danger" *ngIf="unit.touched && unit.invalid">La unidad del producto es requerida.</div> -->
+        </div>
+
         
         <button [disabled]="!f.valid" class="btn btn-primary" type="submit">Save</button>
         &nbsp;

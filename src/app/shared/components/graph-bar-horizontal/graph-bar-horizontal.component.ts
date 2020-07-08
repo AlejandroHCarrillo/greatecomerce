@@ -33,8 +33,8 @@ export class GraphBarHorizontalComponent implements OnInit {
   }
 
   calcBarWidth(value: number, maxValue: number): number{
-    if(maxValue==0) return 0;
-    return Math.round((value/maxValue)*100);
+    if(this.summary.maxValue==0) return 0;
+    return Math.round((value/this.summary.maxValue)*100);
   }
 
   setStyleBar(value: number, index: number){

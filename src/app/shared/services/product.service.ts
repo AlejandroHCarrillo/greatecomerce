@@ -58,7 +58,7 @@ export class ProductService {
   }
 
   update(productId:string, product:Product){
-    console.log('Actualizando el producto', product);
+    // console.log('Actualizando el producto', product);
     return this.db.object('/products/'+productId).update( product );
   }
 
@@ -191,6 +191,14 @@ export class ProductService {
     )    
   };
 
+  getAllUnits(){  
+    return this.db.list('/units', ref => ref.orderByKey() ).snapshotChanges()
+    .pipe( 
+      map(items => {
+        return items.map(c => ({ key: c.payload.key, unit: c.payload.val() }))
+      })
+    );
+  }
   
 
 }

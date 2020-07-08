@@ -3,10 +3,9 @@
     <div class="col-2 menu-left">
       <product-filter [category]="categorySelected"></product-filter>
     </div>
-    <div class="col" style="display: flex; justify-content: flex-end;">
-      
-      <div class="row" *ngIf="cart$ | async as cart" style="display: flex; justify-content: space-around; margin-right: .5rem;">        
-        <div *ngIf="filteredProducts.length===0" class="col alert alert-warning" role="alert">
+    <div class="col" style="display: flex; justify-content: flex-end;">      
+      <div class="row" *ngIf="cart$ | async as cart" style="display: flex; justify-content: space-around; margin-right: .5rem;  width: 100%;">              
+        <div *ngIf="filteredProducts.length===0" class="alert alert-warning" style="width: 100%; height: 3rem; text-align: center;" role="alert">
           No products found.
         </div>
 
