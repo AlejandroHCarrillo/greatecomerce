@@ -6,8 +6,7 @@ import { NG_VALIDATORS, Validator, FormControl } from '@angular/forms';
   providers: [{provide: NG_VALIDATORS, useExisting: CustomMinDirective, multi: true}]
 })
 export class CustomMinDirective implements Validator {
-  @Input()
-  customMin: number;
+  @Input() customMin: number;
 
   validate(c: FormControl): {[key: string]: any} {
       let v = c.value;

@@ -173,6 +173,12 @@ https://swimlane.gitbook.io/ngx-charts/installing
 
 npm install @swimlane/ngx-charts --save
 
+
+### Drag and drop example
+https://medium.com/@tarekabdelkhalek/how-to-create-a-drag-and-drop-file-uploading-in-angular-78d9eba0b854
+
+https://stackblitz.com/edit/angular-drag-n-drop-directive?file=src%2Fapp%2Fprogress%2Fprogress.component.html
+
 ## Localize error
 
 Uncaught Error: It looks like your application or one of its dependencies is using i18n. Angular 9 introduced a global `$localize()` function that needs to be loaded. Please run `ng add @angular/localize` from the Angular CLI. (For non-CLI projects, add `import '@angular/localize/init';` to your `polyfills.ts` file. For server-side rendering applications add the import to your `main.server.ts` file.)

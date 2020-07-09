@@ -17,6 +17,7 @@ import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { CustomMaxDirective } from './directives/custom-max-validator.directive';
 import { CustomMinDirective } from './directives/custom-min-validator.directive';
 import { ReportsModule } from './reports/reports.module';
+import { NgDragDropFilesDirective } from './directives/ng-drag-drop-files.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ReportsModule } from './reports/reports.module';
     NavbarComponent,
     CustomMinDirective,
     CustomMaxDirective,
+    NgDragDropFilesDirective,
   ],
   imports: [
     BrowserModule,
