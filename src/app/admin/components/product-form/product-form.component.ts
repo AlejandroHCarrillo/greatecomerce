@@ -19,6 +19,8 @@ export class ProductFormComponent implements OnInit {
   categories$;
   units$;
 
+  images: string[] = [];
+
   product = new Product();
   productId : string;
 
@@ -39,8 +41,15 @@ export class ProductFormComponent implements OnInit {
                                 key: item.payload.key, ...(item.payload.val() as Product) 
                               }) )
                           ).subscribe(data => { 
-                            // console.log(data);                            
-                            this.product = data;
+                            console.log(data);
+                            this.product = (data as Product);
+                            if (data.images) {
+                              this.images = [];
+                
+                              if(data.imageUrl) this.images.push(data.imageUrl);                              
+                              Object.keys(data.images).map(x => { this.images.push(data.images[x]) });
+                            }                            
+                
                           });
     }
   }

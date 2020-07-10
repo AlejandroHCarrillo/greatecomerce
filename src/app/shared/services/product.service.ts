@@ -36,15 +36,6 @@ export class ProductService {
                 data.map(item => ({ key: item.payload.key, value: item.payload.val() }))
             )
     );
-
-    // console.log("getUserProductStats -> userId", userId);
-    
-    // return this.db.list('/users/' + userId + '/my-products-stats/', ref => ref.child(productId) ).snapshotChanges()
-    // .pipe( 
-    //         map(data =>
-    //             data.map(item => ({ key: item.key, value: item.payload.val() }))
-    //         )
-    // );
   }
 
 
@@ -199,6 +190,20 @@ export class ProductService {
       })
     );
   }
-  
+
+  saveProductImages(productId:string, urls: string[]){
+    let urlPath = '/products/'+ productId + '/images';
+    for (let i = 0; i < urls.length; i++) {
+      console.log("for url:", urls[i])
+      this.db.list(urlPath).push( urls[i] );      
+    }
+  }
+
+  saveProductImage(productId:string, url: string){
+      // console.log("for url:", url);
+      let urlPath = '/products/'+ productId + '/images';
+      this.db.list(urlPath).push( url );      
+      
+    }
 
 }

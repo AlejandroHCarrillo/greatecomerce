@@ -30,9 +30,6 @@ export class ProductDetailComponent implements OnInit {
               ) {
 
     this.productId = this.route.snapshot.paramMap.get('id');
-
-
-
    }
 
   ngOnInit() {

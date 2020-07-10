@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FileItem } from 'shared/models/file-item';
 import { UploadFilesService } from 'shared/services/upload-files.service';
+import { ProductService } from 'shared/services/product.service';
 
 @Component({
-  selector: 'app-upload-files',
+  selector: 'upload-files',
   templateUrl: './upload-files.component.html',
   styleUrls: [ './upload-files.component.scss'
   ]
 })
 export class UploadFilesComponent implements OnInit {
-  // files: FileItem[] = [];
-  archivos: FileItem[] = [];
+  @Input("productId") productId: string;
+
+  files: FileItem[] = [];
   isOverDropZone: boolean= false;
 
   constructor(public _uploadfiles: UploadFilesService) {
@@ -18,27 +20,26 @@ export class UploadFilesComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log("ngOnInit");
   }
 
   uploadFiles(){
-    console.log('running uploadFiles...');
-    // alert('uploadFiles');
-    this._uploadfiles.uploadImages(this.archivos);
+    let urls = this._uploadfiles.uploadImages(this.files, "-KrrIkDT19XhPgWo0T0A");
   }
 
-  // files: any[] = [];
+  cleanFiles(){
+    this.files = [];
+  }
 
   /**
    * on file drop handler
    */
   onFileDropped($event) {
-    console.log("onFileDropped", $event);    
+    // console.log("onFileDropped", $event);    
     // this.prepareFilesList($event);
   }
 
   onMouseOver($event) {
-    console.log($event);    
+    // console.log($event);    
     // this.prepareFilesList($event);
     this.isOverDropZone = $event;
   }
@@ -47,10 +48,11 @@ export class UploadFilesComponent implements OnInit {
    * handle file from browsing
    */
   fileBrowseHandler(files) {
-    console.log("fileBrowseHandler files: ", files);
+    // console.log("fileBrowseHandler files: ", files);
     this._extractFiles(files);
-    console.log("archivos:", this.archivos);    
-    // this.prepareFilesList(this.archivos);
+    this.uploadFiles();
+    // console.log("files:", this.files);    
+    // this.prepareFilesList(this.files);
   }
 
   /**
@@ -58,7 +60,7 @@ export class UploadFilesComponent implements OnInit {
    * @param index (File index)
    */
   deleteFile(index: number) {
-    this.archivos.splice(index, 1);
+    this.files.splice(index, 1);
   }
 
   /**
@@ -66,15 +68,15 @@ export class UploadFilesComponent implements OnInit {
    */
   // uploadFilesSimulator(index: number) {
   //   setTimeout(() => {
-  //     if (index === this.archivos.length) {
+  //     if (index === this.files.length) {
   //       return;
   //     } else {
   //       const progressInterval = setInterval(() => {
-  //         if (this.archivos[index].progress === 100) {
+  //         if (this.files[index].progress === 100) {
   //           clearInterval(progressInterval);
   //           this.uploadFilesSimulator(index + 1);
   //         } else {
-  //           this.archivos[index].progress += 5;
+  //           this.files[index].progress += 5;
   //         }
   //       }, 200);
   //     }
@@ -83,12 +85,12 @@ export class UploadFilesComponent implements OnInit {
 
   /**
    * Convert Files list to normal array list
-   * @param archivos (Files List)
+   * @param files (Files List)
    */
   // prepareFilesList(files: Array<any>) {
     // for (const item of files) {
     //   item.progress = 0;
-    //   this.archivos.push(item);
+    //   this.files.push(item);
     // }
   //   this.uploadFilesSimulator(0);
   // }
@@ -114,15 +116,15 @@ export class UploadFilesComponent implements OnInit {
     for (const propiedad in Object.getOwnPropertyNames( fileList )) {
       if (fileList.hasOwnProperty(propiedad)) {
         const elementFile = fileList[propiedad];
-        console.log(elementFile);
+        // console.log(elementFile);
         
         if(this._isValidFile(elementFile)){
           const newFile = new FileItem(elementFile);
-          this.archivos.push(newFile);
+          this.files.push(newFile);
         }        
       }
     }
-    console.log(this.archivos);
+    // console.log(this.files);
   }
 
   private _isValidFile( file: File): boolean{
@@ -133,7 +135,7 @@ export class UploadFilesComponent implements OnInit {
   }
 
   private _fileAlreadyIn(fileName: string): boolean{
-    for (const item of this.archivos) {
+    for (const item of this.files) {
       if(item.name == fileName){
         console.log(`El archivo ya ${ fileName } esta agregado.`);
         return true;
