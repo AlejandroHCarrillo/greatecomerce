@@ -200,10 +200,15 @@ export class ProductService {
   }
 
   saveProductImage(productId:string, url: string){
-      // console.log("for url:", url);
       let urlPath = '/products/'+ productId + '/images';
       this.db.list(urlPath).push( url );      
-      
-    }
+  }
+
+  clearProductImages(productId:string){
+    let urlPath = '/products/'+ productId + '/images';
+    this.db.list(urlPath).snapshotChanges().forEach(x => {
+        console.log(x);        
+    });
+  }
 
 }
