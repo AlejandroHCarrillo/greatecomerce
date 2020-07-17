@@ -18,6 +18,7 @@ import { CustomMaxDirective } from './directives/custom-max-validator.directive'
 import { CustomMinDirective } from './directives/custom-min-validator.directive';
 import { ReportsModule } from './reports/reports.module';
 import { NgDragDropFilesDirective } from './directives/ng-drag-drop-files.directive';
+import { BlogModule } from './blog/blog.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { NgDragDropFilesDirective } from './directives/ng-drag-drop-files.direct
     AdminModule,
     ShoppingModule,
     ReportsModule,
+
+    BlogModule,
     
     AppRoutingModule,
 

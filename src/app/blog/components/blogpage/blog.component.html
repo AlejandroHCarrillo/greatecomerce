@@ -1,0 +1,45 @@
+<div class="container">
+  <h2>Great ecommerce blog</h2>
+  <div class="row">
+    <div class="col-md-8">
+
+      <div class="card">
+        <div class="card-header">
+          Create post
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <textarea name="post" id="post" cols="65" rows="4" [(ngModel)] = "newPost"></textarea>
+          </p>
+          <button class="btn btn-primary float-right" (click)="publishPost()">Publish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" >
+     <div class="col-md-8">
+
+        <ng-container *ngFor="let post of posts">
+                    
+          <div class="card">
+            <div class="card-header">
+              <img [src]="post.userUrlImage" alt="" *ngIf="post.userUrlImage">
+              {{ post.userName || "Anonym" }}
+            </div>
+            <div class="card-body">    
+              <h5 class="card-title">Special title treatment</h5>        
+              <p class="card-text">
+                {{ post.post }}
+              </p>
+              <small>
+                {{ post.publishDate }}
+              </small>
+              <post-comment [post]="post"></post-comment>
+            </div>
+          </div>
+          
+        </ng-container>
+      </div>
+    </div>
+
+</div>
