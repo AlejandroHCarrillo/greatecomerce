@@ -11,19 +11,20 @@ import { ProductService } from 'shared/services/product.service';
 })
 export class UploadFilesComponent implements OnInit {
   @Input("productId") productId: string;
+  @Input("showControls") showControls : boolean=true;
+  
 
   files: FileItem[] = [];
   isOverDropZone: boolean= false;
 
   constructor(public _uploadfiles: UploadFilesService) {
-
    }
 
   ngOnInit(): void {
   }
 
   uploadFiles(){
-    let urls = this._uploadfiles.uploadImages(this.files, "-KrrIkDT19XhPgWo0T0A");
+    let urls = this._uploadfiles.uploadImages(this.files, this.productId);
   }
 
   cleanFiles(){

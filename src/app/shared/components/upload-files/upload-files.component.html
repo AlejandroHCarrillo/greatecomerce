@@ -13,7 +13,7 @@
       (change)="fileBrowseHandler($event.target.files)"
       
       />
-      <svg xmlns="http://www.w3.org/2000/svg" width="63" height="64" viewBox="0 0 63 64">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 63 64">
         <g fill="#3B454F" fill-rule="nonzero">
           <path d="M42.656 15.135a1.953 1.953 0 0 1-1.391-.578L31.5 4.795l-9.765 9.762a1.97 1.97 0 1 1-2.785-2.785L30.106.616a1.97 1.97 0 0 1 2.785 0l11.157 11.156a1.97 1.97 0 0 1-1.392 3.363z" />
           <path d="M31.5 36.791a1.97 1.97 0 0 1-1.969-1.969V2.01a1.97 1.97 0 0 1 3.938 0v32.812a1.97 1.97 0 0 1-1.969 1.969z" />
@@ -24,9 +24,10 @@
       <h3>Drag and drop file here</h3>
       <h3>or</h3>
       <label for="fileDropRef">Browse for file</label>
+      <div class="note" *ngIf="productId">ProductId : {{ productId }}</div>
     </div>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-6" *ngIf="showControls">
     <h4>upload files</h4>
 
     <button (click)="uploadFiles()" class="btn btn-success" [disabled]="files.length===0">Upload</button>
@@ -34,6 +35,7 @@
     
     <div class="files-list">
       <div class="single-file" *ngFor="let file of files; let i = index">
+
         <div class="file-icon" style="width: 50px">
           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve">

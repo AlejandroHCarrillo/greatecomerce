@@ -201,6 +201,8 @@ export class ProductService {
 
   saveProductImage(productId:string, url: string){
       let urlPath = '/products/'+ productId + '/images';
+      console.log("Path: ", urlPath);
+      
       this.db.list(urlPath).push( url );      
   }
 

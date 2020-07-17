@@ -18,6 +18,8 @@ export class UploadFilesService {
     let imageUrls: string[] = [];
     const storageRef = firebase.storage().ref();
 
+    this._productService.clearProductImages(productId);
+
     for (const item of files) {
       item.estaSubiendo = true;
       if(item.progress>= 100) continue;
