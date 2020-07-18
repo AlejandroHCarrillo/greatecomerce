@@ -107,4 +107,16 @@ export class UserService implements OnInit {
     map( user => { return (user as any ).uid } )
    );
   }
+
+  get getUserLogged(){
+    return this.afAuth.authState 
+    .pipe(
+     map( user => { return ({ 
+                             uid: user.uid, 
+                             displayName: user.displayName, 
+                             email: user.email, 
+                             photoURL: user.photoURL 
+                            }) } )
+    );
+   }
 }

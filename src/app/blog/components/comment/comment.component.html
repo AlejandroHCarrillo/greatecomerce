@@ -1,2 +1,6 @@
-<input type="text" name="newComment" id="newComment" [(ngModel)] = "newComment">
-<button class="btn btn-secondary" (click)="saveComment()">Comment</button>
+<div class="comment-controls">
+  <img [src]="user.photoURL" class="user-photo-comment" alt="" *ngIf="user.photoURL">
+  <input type="text" [(ngModel)] = "newComment">
+  <button class="btn btn-secondary" (click)="saveComment()">
+    <i class="far fa-comment"></i>
+  </button>

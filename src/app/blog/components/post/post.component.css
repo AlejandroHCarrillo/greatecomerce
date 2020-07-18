@@ -1,0 +1,18 @@
+.card{
+  margin-top: .5rem;
+}
+
+.comment-box{
+  background-color: rgb(212, 212, 212);
+  padding: .2rem .8rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+}
+
+.comment-user{
+  font-weight: bold;
+}
+
+.comment-date{
+  font-size: .5rem;
+}

@@ -1,0 +1,14 @@
+input[type=text]{
+  width: 87%;
+  margin-right: .5rem ;
+}
+
+.comment-controls{
+  margin-top: .5rem;
+  padding: .4rem;
+  border: rgb(214, 214, 214) solid 1px;
+  border-radius: .5rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}

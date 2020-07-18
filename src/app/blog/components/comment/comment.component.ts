@@ -9,7 +9,9 @@ import { Comment } from 'app/blog/models/comment.model';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-  @Input('post') post: Post;
+  @Input('postId') postId: string;
+  @Input('user') user: any;
+
   newComment: string;
 
   constructor(private postService: PostService ) { }
@@ -18,9 +20,10 @@ export class CommentComponent implements OnInit {
   }
 
   saveComment(){
-    console.log("saving comment of this post", this.newComment, this.post);
+    // console.log("saving comment of this post", this.newComment, this.postId);
+    console.log(this.user);
     
-    let comm = new Comment(this.post.key, "ElChairo", "ChairoCualquiera", "", this.newComment);
+    let comm = new Comment(this.postId, this.user.uid, this.user.displayName, this.user.photoURL, this.newComment);
     this.postService.createComment(comm);
 
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'app/blog/models/post.model';
 import { PostService } from 'app/blog/services/post.service';
-import { post } from 'jquery';
+import { UserService } from 'shared/services/user.service';
+import { User } from 'shared/models/user.model';
 
 @Component({
   selector: 'app-blog',
@@ -9,18 +10,35 @@ import { post } from 'jquery';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
-  newPost: string = "Este es un post de prueba";
+  currentUser: User;
+  newPost: string = "";
   posts: Post[] = [];
 
-  constructor(private postService: PostService ) { }
+  constructor(private postService: PostService, public userService: UserService ) { 
+
+
+  }
 
   ngOnInit(): void {
+    this.userService.getUserLogged.subscribe( u => {
+      this.currentUser = (u as User);
+    } );
+
     this.loadPosts();
   }
 
   publishPost(){
-    let post = new Post(this.newPost, "ELMERHOMERO")
-    console.log("publishing post: ", post);
+    // console.log("currentUser.uid: ", this.currentUser.uid);
+    let post = new Post(this.newPost, this.currentUser.uid )
+    
+    post.key = null;
+    post.comments = null;
+
+    post.userName = this.currentUser.displayName;
+    post.photoURL = this.currentUser.photoURL;
+
+    // console.log("publishing post: ", post);
+
     this.postService.createPost(post);
   }
 
@@ -28,10 +46,17 @@ export class BlogComponent implements OnInit {
     this.postService.getAllPosts()
       .subscribe(resp =>{
         console.log(resp);
-        resp.forEach(x => {
-            this.posts.unshift(x);
-        });
-        console.log(this.posts);
+        if(resp){
+          this.posts = [];
+          resp.forEach(post => {
+            // console.log("x.comments", x.comments);
+            if(post.comments) {
+              // console.log("comments array", Object.values(x.comments));
+              post.comments = Object.values(post.comments);
+            }
+              this.posts.unshift(post);
+        });}
+        // console.log(this.posts);
         // this.posts = resp
       })
   }
