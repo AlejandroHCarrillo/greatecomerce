@@ -2,13 +2,6 @@
   margin-top: .5rem;
 }
 
-.comment-box{
-  background-color: rgb(212, 212, 212);
-  padding: .2rem .8rem;
-  border-radius: .3rem;
-  margin-top: .5rem;
-}
-
 .comment-user{
   font-weight: bold;
 }
@@ -16,3 +9,41 @@
 .comment-date{
   font-size: .5rem;
 }
+
+.controls-right{
+  top:0;
+  right:0;
+}
+
+.btn{
+  height: 1.3rem;
+  /* padding-left: .1rem; */
+  margin-left: .2rem;
+  font-size: xx-small;
+  width: 2.8rem;
+}
+
+.post-container{
+  position:relative;
+}
+
+.comment-container{
+  background-color: rgb(212, 212, 212);
+  padding: .2rem .8rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+
+  position:relative;
+}
+
+.box{
+  position:absolute;
+}
+
+.top{top:0}
+.middle{top:50%;margin-top:-10px;/*half of the .box height*/}
+.bottom{bottom:0}
+
+.left{left:0;}
+.center{left:50%;margin-left:-10px;/*half of the .box width*/}
+.right{right:0;}

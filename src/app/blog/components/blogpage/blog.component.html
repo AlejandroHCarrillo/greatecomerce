@@ -4,7 +4,6 @@
     <div class="col-md-10">
       <div class="card">
         <div class="card-header" *ngIf="currentUser">
-          <!-- {{ currentUser | json }} -->
           <img  *ngIf="currentUser.photoURL" [src]="currentUser.photoURL" class="user-photo" [alt]="currentUser.displayName">
           {{ currentUser.displayName }}
           Create post

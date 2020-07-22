@@ -1,4 +1,5 @@
 export class Comment{
+  public key?: string;
   constructor( 
                public postId: string,
                public userId: string,

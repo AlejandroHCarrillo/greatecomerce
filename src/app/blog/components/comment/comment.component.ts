@@ -21,7 +21,7 @@ export class CommentComponent implements OnInit {
 
   saveComment(){
     // console.log("saving comment of this post", this.newComment, this.postId);
-    console.log(this.user);
+    // console.log(this.user);
     
     let comm = new Comment(this.postId, this.user.uid, this.user.displayName, this.user.photoURL, this.newComment);
     this.postService.createComment(comm);

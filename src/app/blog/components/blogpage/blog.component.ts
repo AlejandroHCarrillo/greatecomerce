@@ -40,19 +40,25 @@ export class BlogComponent implements OnInit {
     // console.log("publishing post: ", post);
 
     this.postService.createPost(post);
+
+    this.newPost = "";
   }
 
   loadPosts(){
     this.postService.getAllPosts()
       .subscribe(resp =>{
-        console.log(resp);
+        // console.log(resp);
         if(resp){
           this.posts = [];
           resp.forEach(post => {
             // console.log("x.comments", x.comments);
-            if(post.comments) {
-              // console.log("comments array", Object.values(x.comments));
-              post.comments = Object.values(post.comments);
+            // if(post.comments) {
+              // console.log("comments array", Object.values(post.comments));
+              // console.log("post:", post);
+              // post.comments = Object.values(post.comments);
+            // }
+            if(!post.photoURL || post.photoURL === undefined || post.photoURL === ''){
+              post.photoURL = 'assets/images/default-user-profile.png';
             }
               this.posts.unshift(post);
         });}
