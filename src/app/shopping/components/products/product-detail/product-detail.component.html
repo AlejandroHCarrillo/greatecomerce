@@ -6,8 +6,16 @@
   <div class="row">
 
     <div class="col-md-1" *ngIf="images.length > 0 ">
-      <div *ngFor="let item of images; let i = index" >
+      <!-- <div *ngFor="let item of images; let i = index" >
         <img [src]="item" style="width: 75px; height: auto; padding: 5px;">
+      </div> -->
+      <!-- <ng-container *ngFor="let picture of images; let i = index" >
+        <figure data-toggle="modal" data-target="#photoModal" (click)="setCurrentImg(picture)">
+          <img [src]="picture" style="width: 100%; height: auto; padding: 1px;">
+        </figure>
+      </ng-container> -->
+      <div class="row" style="display: flex; flex-direction: row; flex-flow: wrap;" >
+        <gallery [pictures]="images" [title]="product.title" [direction]="'v'"></gallery>
       </div>
     </div>
 
@@ -48,12 +56,22 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">col 2 1</div>
-    <div class="col">col 2 2</div>
-    <div class="col">
-      add to chart
+</div>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="photoModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document" *ngIf="product">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLongTitle">{{product.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+          </span>
+        </button>
+      </div>
+      <div class="modal-body" style="align-content: center;">
+        <img [src]="currentImage" [alt]="currentImage" style="width: 29rem;">
+      </div>
     </div>
   </div>
-
-</div>
+</div> -->

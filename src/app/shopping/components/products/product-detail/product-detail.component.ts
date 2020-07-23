@@ -22,6 +22,7 @@ export class ProductDetailComponent implements OnInit {
   productId: string;
   product: Product;
   images: string[] = [];
+  currentImage: string = "";
   
   constructor(private route: ActivatedRoute,
               private cartService: ShoppingCartService, 
@@ -128,4 +129,8 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getUserProductStats(userId, productId);
   }
 
+  setCurrentImg(url: string){
+    this.currentImage = url;
+  }
 }
+

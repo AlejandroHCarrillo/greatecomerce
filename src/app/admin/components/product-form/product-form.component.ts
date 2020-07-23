@@ -20,6 +20,7 @@ export class ProductFormComponent implements OnInit {
   units$;
 
   images: string[] = [];
+  currentImage: string = "";
 
   product = new Product();
   productId : string;
@@ -75,4 +76,7 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+  setCurrentImg(url: string){
+    this.currentImage = url;
+  }
 }

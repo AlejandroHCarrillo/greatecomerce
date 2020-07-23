@@ -26,7 +26,7 @@ import { VideoPipe } from './pipes/video.pipe';
 import { VideoCatalogComponent } from './components/video-catalog/video-catalog.component';
 import { GraphBarHorizontalComponent } from './components/graph-bar-horizontal/graph-bar-horizontal.component';
 import { GraphBarVerticalComponent } from './components/graph-bar-vertical/graph-bar-vertical.component';
-import { PhotosComponent } from './components/photos/photos.component';
+import { GalleryComponent } from './components/photos/gallery.component';
 import { UploadFilesComponent } from './components/upload-files/upload-files.component';
 import { UploadFilesService } from './services/upload-files.service';
 
@@ -41,7 +41,7 @@ import { UploadFilesService } from './services/upload-files.service';
     VideoCatalogComponent,
     GraphBarHorizontalComponent,
     GraphBarVerticalComponent,
-    PhotosComponent,
+    GalleryComponent,
     UploadFilesComponent
   ],
   imports: [
@@ -79,7 +79,7 @@ import { UploadFilesService } from './services/upload-files.service';
     VideoCatalogComponent,
     GraphBarHorizontalComponent,
     GraphBarVerticalComponent,
-    PhotosComponent,
+    GalleryComponent,
     UploadFilesComponent
   ],
   providers: [

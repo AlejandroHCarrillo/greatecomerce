@@ -196,6 +196,10 @@ npm install @angular/localize --save
 
 Then, import '@angular/localize/init' in your polyfills.ts file just like the error says
 
+## Youtube API
+https://developers.google.com/youtube/v3/docs?hl=es
+https://console.developers.google.com/cloud-resource-manager?hl=es
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.

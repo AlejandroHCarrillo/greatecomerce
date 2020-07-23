@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="z-index: 10000;">
   <div class="container">    
-    <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >
+    <a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="router-link-active" >
       <i class="fas fa-store brand-primary"></i> G
   </a>
   
@@ -9,11 +9,11 @@
   </button>
   <div class="navbar-collapse collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" routerLinkActive="active">
+        <!-- <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >
             <i class="fas fa-home brand-primary"></i>             
             <span class="menu-text">Home</span></a>
-        </li>
+        </li> -->
 
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/products']">
@@ -23,7 +23,7 @@
         </li>
 
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/photos']">
+          <a class="nav-link" [routerLink]="['/gallery']">
             <i class="far fa-images  brand-primary"></i>
             <span class="menu-text">Photos</span>
           </a>
@@ -32,8 +32,14 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/blog']">
             <i class="fas fa-upload  brand-primary"></i>
-            <span class="menu-text">Blog</span>
+            <span class="menu-text">Social Network</span>
           </a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/videos']" routerLinkActive="router-link-active" >
+            <i class="fas fa-film brand-primary"></i>             
+            <span class="menu-text">Video</span></a>
         </li>
 
         <ng-template #anonymusUser>
